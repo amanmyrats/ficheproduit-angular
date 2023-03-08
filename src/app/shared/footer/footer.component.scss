@@ -1,0 +1,23 @@
+@import "src/styles/_variables";
+
+mat-toolbar {
+    height: $footer-height;
+    font-size: 14px;
+    font-weight: 100;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.footer {
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+}

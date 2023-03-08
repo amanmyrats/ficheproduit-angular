@@ -1,0 +1,75 @@
+<mat-nav-list>
+    <a mat-list-item routerLink="/home" (click)="onSidenavClose()">
+        <mat-icon>home</mat-icon> <span class="nav-caption">Home</span>
+    </a>
+
+    <mat-list-item [matMenuTriggerFor]="chantierMenu" #chantierMenuTrigger="matMenuTrigger">
+        <mat-icon>unfold_more</mat-icon>
+        <a matline>Chantier</a>
+    </mat-list-item>
+    <mat-list-item [matMenuTriggerFor]="serviceAchatMenu" #achatMenuTrigger="matMenuTrigger">
+        <mat-icon>unfold_more</mat-icon>
+        <a matline>Service Achat</a>
+    </mat-list-item>
+    <mat-list-item [matMenuTriggerFor]="logisticsMenu" #logisticsMenuTrigger="matMenuTrigger">
+        <mat-icon>unfold_more</mat-icon>
+        <a matline>Logistics</a>
+    </mat-list-item>
+    <mat-list-item [matMenuTriggerFor]="qsMenu" #qsMenuTrigger="matMenuTrigger">
+        <mat-icon>unfold_more</mat-icon>
+        <a matline>QS</a>
+    </mat-list-item>
+
+    <mat-menu #chantierMenu="matMenu">
+        <button mat-menu-item (click)="onSidenavClose()">Dashboard</button>
+        <button mat-menu-item (click)="onSidenavClose()">Fiche Produits</button>
+        <button mat-menu-item (click)="onSidenavClose()">Create Fiche Produit</button>
+        <button mat-menu-item (click)="onSidenavClose()">Inventory List</button>
+        <button mat-menu-item (click)="onSidenavClose()">Create Inventory</button>
+        <button mat-menu-item (click)="onSidenavClose()">Materials</button>
+        <button mat-menu-item (click)="onSidenavClose()">Create Material</button>
+    </mat-menu>
+    <mat-menu #serviceAchatMenu="matMenu">
+        <button mat-menu-item (click)="onSidenavClose()">Dashboard</button>
+        <button mat-menu-item (click)="onSidenavClose()">Orders</button>
+        <button mat-menu-item (click)="onSidenavClose()">Create Order</button>
+    </mat-menu>
+
+    <mat-menu #logisticsMenu="matMenu">
+        <button mat-menu-item (click)="onSidenavClose()">Dashboard</button>
+        <button mat-menu-item (click)="onSidenavClose()">Factures</button>
+        <button mat-menu-item (click)="onSidenavClose()">Create Facture</button>
+    </mat-menu>
+
+    <mat-menu #qsMenu="matMenu">
+        <button mat-menu-item (click)="onSidenavClose()">Dashboard</button>
+    </mat-menu>
+
+
+
+
+    
+
+    <!-- Profile and Help  -->
+    <mat-list-item [matMenuTriggerFor]="profileMenu" #profileMenuTrigger="matMenuTrigger">
+        <mat-icon>person</mat-icon>
+        <a matline>Account</a>
+    </mat-list-item>
+    <mat-menu #profileMenu="matMenu">
+        <button mat-menu-item (click)="onSidenavClose()">Profile</button>
+        <button mat-menu-item (click)="onSidenavClose()">Edit</button>
+        <button mat-menu-item (click)="onSidenavClose()">Change Password</button>
+    </mat-menu>
+
+
+    <a mat-list-item routerLink="/login" (click)="onSidenavClose()">
+        <mat-icon>login</mat-icon> <span class="nav-caption">Login</span>
+    </a>
+    <a mat-list-item routerLink="/logout" (click)="onSidenavClose()">
+        <mat-icon>logout</mat-icon> <span class="nav-caption">Logout</span>
+    </a>
+    <a mat-list-item routerLink="/help" (click)="onSidenavClose()">
+        <mat-icon>help</mat-icon><span class="nav-caption">Help</span>
+    </a>
+    
+</mat-nav-list>

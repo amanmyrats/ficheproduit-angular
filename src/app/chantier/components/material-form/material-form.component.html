@@ -1,0 +1,63 @@
+<form [formGroup]="materialForm" (ngSubmit)="onSubmit()">
+    <mat-card>
+        <div class="wrapper">
+            <div class="form-title">
+                <mat-card-header>
+                    <mat-card-title>
+                        Add New Material
+                    </mat-card-title>
+                </mat-card-header>
+            </div>
+            <div class="wrapper-upper">
+                <div class="wrapper-upper-image">
+                    <img src="" alt="">
+                    <input type="file" formControlName="image" (change)=(onChange($event))>
+                </div>
+                <div class="wrapper-upper-names">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Name (English)</mat-label>
+                        <input type="text" formControlName="nameEn" matInput>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Name (French)</mat-label>
+                        <input type="text" formControlName="nameFr" matInput>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Name (Russian)</mat-label>
+                        <input type="text" formControlName="nameRu" matInput>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Name (Turkmen)</mat-label>
+                        <input type="text" formControlName="nameTm" matInput>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="wrapper-below">
+                <mat-form-field appearance="outline">
+                    <mat-label>Description (English)</mat-label>
+                    <textarea matInput rows="3" cols="50" formControlName="descEn">
+                </textarea>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Description (French)</mat-label>
+                    <textarea matInput rows="3" cols="50" formControlName="descFr">
+                </textarea>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Description (Russian)</mat-label>
+                    <textarea matInput rows="3" cols="50" formControlName="descRu">
+                </textarea>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Description (Turkmen)</mat-label>
+                    <textarea matInput rows="3" cols="50" formControlName="descTm">
+                </textarea>
+                </mat-form-field>
+            </div>
+
+            <mat-card-actions>
+                <button mat-raised-button color="primary" type="submit" [disabled]="!materialForm.valid">Add</button>
+            </mat-card-actions>
+        </div>
+    </mat-card>
+</form>

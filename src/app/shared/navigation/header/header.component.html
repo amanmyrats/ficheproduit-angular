@@ -1,0 +1,87 @@
+<mat-toolbar class="header" color="primary">
+    <!-- Toggle icon -->
+    <button fxHide.gt-xs class="header-toggle" mat-icon-button (click)="onToggleSidenav()">
+        <mat-icon>menu</mat-icon>
+    </button>
+
+    <!-- Logo -->
+    <a class="header-link" routerLink="/home">
+        <img class="header-link-logo" src="assets/img/bytk_logo_resized.png" alt="">
+    </a>
+
+    <!-- Menu  -->
+    <div class="header-menu" fxFlex fxLayout fxLayoutAlign="center" fxHide.xs>
+    
+        <button class="header-menu-button" mat-raised-button 
+            [matMenuTriggerFor]="chantierMenu" 
+            #chantierMenuTrigger="matMenuTrigger"
+            >Chantier</button>
+        <button class="header-menu-button" mat-raised-button 
+            [matMenuTriggerFor]="serviceAchatMenu" 
+            #serviceAchatMenuTrigger="matMenuTrigger" 
+            >Service Achat</button>
+        <button class="header-menu-button" mat-raised-button 
+            [matMenuTriggerFor]="logisticsMenu" 
+            #logisticsMenuTrigger="matMenuTrigger" 
+            >Logistics</button>
+        <button class="header-menu-button" mat-raised-button 
+            [matMenuTriggerFor]="qsMenu" 
+            #qsMenuTrigger="matMenuTrigger" 
+            >QS</button>
+
+        <mat-menu #chantierMenu="matMenu">
+            <button mat-menu-item routerLink="chantier">Dashboard</button>
+            <button mat-menu-item routerLink="chantier">Fiche Produits</button>
+            <button mat-menu-item routerLink="chantier">Create Fiche Produit</button>
+            <button mat-menu-item routerLink="chantier">Inventory List</button>
+            <button mat-menu-item routerLink="chantier">Create Inventory</button>
+            <button mat-menu-item routerLink="chantier/materials">Materials</button>
+            <button mat-menu-item routerLink="chantier/materials/create">Create Material</button>
+        </mat-menu>
+
+        <mat-menu #serviceAchatMenu="matMenu">
+            <button mat-menu-item>Dashboard</button>
+            <button mat-menu-item>Orders</button>
+            <button mat-menu-item>Create Order</button>
+        </mat-menu>
+
+        <mat-menu #logisticsMenu="matMenu">
+            <button mat-menu-item>Dashboard</button>
+            <button mat-menu-item>Factures</button>
+            <button mat-menu-item>Create Facture</button>
+        </mat-menu>
+
+        <mat-menu #qsMenu="matMenu">
+            <button mat-menu-item>Dashboard</button>
+        </mat-menu>
+
+    </div>
+
+    <!-- Profile and Help  -->
+    <div class="header-account" fxHide.xs>
+        <button mat-icon-button [matMenuTriggerFor]="profileMenu">
+            <mat-icon>person</mat-icon>
+        </button>
+
+        <mat-menu #profileMenu="matMenu">
+            <button mat-menu-item>Profile</button>
+            <button mat-menu-item>Edit</button>
+            <button mat-menu-item>Changa Password</button>
+        </mat-menu>
+
+
+        <button mat-icon-button >
+            <mat-icon>login</mat-icon>
+        </button>
+
+        <button mat-icon-button >
+            <mat-icon>logout</mat-icon>
+        </button>
+
+        <button mat-icon-button >
+            <mat-icon>help</mat-icon>
+        </button>
+        
+    </div>
+        
+  </mat-toolbar>
