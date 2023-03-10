@@ -11,6 +11,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MaterialListComponent } from './components/material-list/material-list.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatIconModule } from '@angular/material/icon';
+import { MaterialCreateComponent } from './components/material-create/material-create.component';
+import { MaterialEditComponent } from './components/material-edit/material-edit.component';
 
 
 @NgModule({
@@ -18,7 +22,9 @@ import { MaterialListComponent } from './components/material-list/material-list.
     ChantierDashboardComponent,
     MaterialComponent,
     MaterialFormComponent,
-    MaterialListComponent
+    MaterialListComponent,
+    MaterialCreateComponent,
+    MaterialEditComponent,
   ],
   imports: [
     CommonModule,
@@ -28,7 +34,11 @@ import { MaterialListComponent } from './components/material-list/material-list.
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    MatCardModule
+    MatCardModule,
+    MatIconModule,
+  ],
+  exports: [
+    MaterialFormComponent,
   ]
 })
 export class ChantierModule { }

@@ -1,7 +1,30 @@
-here is material list
-<br>
-<div *ngFor="let material of materials">
-    {{ material.id }}
-    {{ material.nameEn }}
-    adf
+<div class="material-wrapper">
+    <mat-card *ngFor="let material of materials">
+        <img mat-card-image src="assets/img/achat.jpg" alt="">
+        <mat-card-header>
+            <mat-card-title>
+                {{ material.nameEn }}
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            {{ material.descEn }}
+            {{ material.id }}
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Corporis rem veniam nesciunt nulla qui, nostrum atque quis
+            veritatis, earum asperiores, corrupti officiis sunt. 
+            Dolorum aut eligendi reiciendis voluptatibus minus sapiente!
+        </mat-card-content>
+        <mat-card-actions>
+              <button mat-mini-fab color="warn" (click)="deleteMaterial(material.id)" >
+                  <mat-icon>delete</mat-icon>
+              </button>
+              <button mat-mini-fab routerLink="edit/{{material.id}}">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-fab extended routerLink="{{material.id}}" >
+                <mat-icon>info</mat-icon>
+                See Details
+            </button>
+        </mat-card-actions>
+    </mat-card>
 </div>

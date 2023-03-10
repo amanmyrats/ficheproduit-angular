@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ChantierDashboardComponent } from './chantier-dashboard/chantier-dashboard.component';
-import { MaterialFormComponent } from './components/material-form/material-form.component';
+import { MaterialCreateComponent } from './components/material-create/material-create.component';
+import { MaterialEditComponent } from './components/material-edit/material-edit.component';
 import { MaterialListComponent } from './components/material-list/material-list.component';
 import { MaterialComponent } from './components/material/material.component';
 
 const routes: Routes = [
   {path: '', component: ChantierDashboardComponent,
     children: [
-      {path:'materials/create', component: MaterialFormComponent},
-      {path:'materials/list', component: MaterialListComponent},
+      {path:'materials/edit/:id', component: MaterialEditComponent},
+      {path:'materials/create', component: MaterialCreateComponent},
       {path:'materials/:id', component: MaterialComponent},
-      {path:'materials', component: MaterialComponent},
+      {path:'materials', component: MaterialListComponent},
     ]},
 ];
 

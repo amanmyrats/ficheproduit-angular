@@ -10,7 +10,7 @@ import { MaterialService } from '../../services/material.service';
 })
 export class MaterialListComponent implements OnInit {
   
-  materials: Material[] | null = null;
+  materials: Material[];
   
   constructor(private materialService: MaterialService){}
   
@@ -19,11 +19,17 @@ export class MaterialListComponent implements OnInit {
   }
 
   getMaterials(): void{
-    console.log("inside material component ts");
-    this.materialService.getMaterials().subscribe((data: any) => {
+    this.materialService.getMaterials().subscribe((data: Material[]) => {
       this.materials = data;
-      console.log("data " + data)
     });
-    console.log(this.materials);
+  }
+
+  deleteMaterial(id: any): void {
+    this.materialService.deleteMaterial(id).subscribe(
+      (data: any) => {
+        console.log("data from delete " + data)
+        this.getMaterials();
+      }
+    );
   }
 }
