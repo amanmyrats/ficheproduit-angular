@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Material } from '../../models/material-class.model';
-import { MaterialService } from '../../services/material.service';
+import { Material } from '../../../models/material-class.model';
+import { MaterialService } from '../../../services/material.service';
 
 @Component({
   selector: 'app-material-create',

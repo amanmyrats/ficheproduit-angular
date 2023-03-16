@@ -10,7 +10,7 @@ export class Material {
     public descTm?: string;
     public slug?: string;
     // category?: string;
-    // image?: string;
+    image?: string;
     // created_by?: string;
     // created_at?: string;
     // date_modified?: string;

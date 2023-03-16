@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormGroupDirective } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Material } from '../../models/material-class.model';
-import { MaterialService } from '../../services/material.service';
+import { Material } from '../../../models/material-class.model';
+import { MaterialService } from '../../../services/material.service';
 
 @Component({
   selector: 'app-material-form',
@@ -43,14 +43,20 @@ export class MaterialFormComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     if (this.id) {
       this.isEditMode = true;
+
       this.materialService.getMaterial(this.id)
-      .subscribe(material => this.materialFormGroup.patchValue(material));
+      .subscribe(material => {
+        material.image = "";
+        this.materialFormGroup.patchValue(material)
+      });
     }
   }
 
   submit() {
     if (this.materialFormGroup.valid) {
-      this.onSubmit.emit(this.materialFormGroup.value)
+      console.log("sending " + this.materialFormGroup.value);
+      console.log(this.materialFormGroup.value);
+      this.onSubmit.emit(this.materialFormGroup.value);
     }
   }
 

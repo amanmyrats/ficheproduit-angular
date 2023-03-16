@@ -1,0 +1,31 @@
+<div class="table-title">Materials Included.</div>
+<table mat-table [dataSource]="materialcardmaterialList">
+
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let materialcardmaterial"> {{materialcardmaterial.id}} </td>
+    </ng-container>
+    
+        <ng-container matColumnDef="material">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let materialcardmaterial"> {{materialcardmaterial.material.nameEn}} </td>
+        </ng-container>
+
+    <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let materialcardmaterial"> {{materialcardmaterial.quantity}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="unit">
+        <th mat-header-cell *matHeaderCellDef> Unit </th>
+        <td mat-cell *matCellDef="let materialcardmaterial"> {{materialcardmaterial.unit.code}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="unitPrice">
+        <th mat-header-cell *matHeaderCellDef> Unit Price </th>
+        <td mat-cell *matCellDef="let materialcardmaterial"> {{materialcardmaterial.unitPrice}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let materialcardmaterial; columns: columnsToDisplay"></tr>
+</table>

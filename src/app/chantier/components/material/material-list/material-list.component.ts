@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Material } from '../../models/material-class.model';
-import { MaterialService } from '../../services/material.service';
+import { Material } from '../../../models/material-class.model';
+import { MaterialService } from '../../../services/material.service';
 
 @Component({
   selector: 'app-material-list',

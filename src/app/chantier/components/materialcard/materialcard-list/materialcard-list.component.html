@@ -1,0 +1,30 @@
+<div class="material-wrapper">
+    <mat-card *ngFor="let materialcard of materialcards">
+        <img mat-card-image src="assets/img/achat.jpg" alt="">
+        <mat-card-header>
+            <mat-card-title>
+                {{ materialcard.nameEn }}
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            {{ materialcard.descEn }}
+            {{ materialcard.id }}
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Corporis rem veniam nesciunt nulla qui, nostrum atque quis
+            veritatis, earum asperiores, corrupti officiis sunt. 
+            Dolorum aut eligendi reiciendis voluptatibus minus sapiente!
+        </mat-card-content>
+        <mat-card-actions>
+              <button mat-mini-fab color="warn" (click)="deleteMaterial(materialcard.id)" >
+                  <mat-icon>delete</mat-icon>
+              </button>
+              <button mat-mini-fab routerLink="edit/{{materialcard.id}}">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-fab extended routerLink="{{materialcard.id}}" >
+                <mat-icon>info</mat-icon>
+                See Details
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>

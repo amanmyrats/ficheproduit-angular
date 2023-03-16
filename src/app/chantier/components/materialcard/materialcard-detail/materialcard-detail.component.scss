@@ -1,0 +1,223 @@
+@import 'src/styles/_variables';
+
+.a4 {
+    width: #{$a4-width};
+    height: #{$a4-height};
+    display: flex;
+    justify-content: center;
+    align-items: center;        
+ 
+    mat-card {
+        width: calc(#{$a4-width}*0.96);
+        height: calc(#{$a4-height}*0.96);
+        display: flex;
+        flex-direction: column;    
+        // border-bottom: 10px solid black;    
+
+        .horizontal-block {
+            display: flex;
+            flex-direction: row;
+            flex-grow:1;
+
+            &-main {
+                display: flex;
+                flex-direction: row;
+                flex-grow: 1 1 100%;
+                border: .5px solid black;
+                border-radius: 5px;
+            }
+        }
+
+        .vertical-block {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+
+        }
+
+        *.signature-row:nth-child(-n+2) {
+            flex-grow:1;            
+        }
+        *.signature-row:nth-child(n+3) {
+            flex-grow:2;            
+        }
+
+        .label {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 500;
+            flex: 1 0 auto;
+            padding-left: 1px;
+
+            &-left {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+            }
+            
+            &-center {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            &-wrap {
+                word-wrap: break-word;
+            }
+        }
+
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex: 1 1 100%;            
+
+            &-left {
+                justify-content: flex-start;
+            }
+
+            &-bold {
+                font-weight: 600;
+            }
+        }
+
+        *.border-primary {
+            border-radius: 5px;
+
+            &-top {
+                border-top: .5px solid black;
+            }
+
+            &-right {
+                border-right: .5px solid black;
+            }
+
+            &-bottom {
+                border-bottom: .5px solid black;
+            }
+
+            &-left {
+                border-left: .5px solid black;
+            }
+        }
+
+        *.border-secondary {
+            border-radius: 5px;
+
+            &-top {
+                border-top: .5px solid rgb(229, 213, 213);
+            }
+
+            &-right {
+                border-right: .5px solid rgb(229, 213, 213);
+            }
+
+            &-bottom {
+                border-bottom: .5px solid rgb(229, 213, 213);
+            }
+
+            &-left {
+                border-left: .5px solid rgb(229, 213, 213);
+            }
+        }
+
+        // Blocks
+        // Blocks
+        // Blocks
+        .materialcard-header {
+            height: 100px;
+
+            &-logo {
+                flex: 0 1 auto;
+                width: 210px;                
+                
+                img {
+                    height: 95px;
+                }
+            }
+
+            &-title {
+
+                &-name {
+                    padding: 3px 0;
+                }
+
+                &-names {
+                    flex: 1 1 100%;
+                }
+            }
+        }
+
+        .chantier-name {
+            min-height: 25px;
+            font-size: 12px;            
+        }
+
+        .supplier {
+            min-height: 55px;
+        }
+
+        .location {
+            min-height: 55px;
+        }
+
+        .description {
+          min-height: 270px;  
+        }
+
+        .protocol {
+            height: 325px;            
+
+            &-protocol {
+                // flex: 1 0 auto;
+                flex-grow: 1;                
+                .emetteur-block {
+                    height: 60px;
+                    flex: 0 1 auto;                    
+                }
+            }
+
+            &-image {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                // flex: 1 0 auto;
+                flex-grow: 1;                
+                
+                img {
+                    width: 320px;
+                    height: 320px;
+                    object-fit: contain;
+                    // min-width: calc(#{$a4-width}*0.70/2);
+                    // flex: 1 0 auto;
+                }
+            }
+
+        }
+
+        .signature {
+            height: 130px;
+            flex-grow:2;
+
+            &-company, &-position {
+                font-size: 12px;
+            }
+
+            &-left-labels {
+                font-size: 10px;
+            }
+        }
+
+        .materialcard-footer {
+            height: 45px;
+            max-height: 100%;
+            // flex-grow:2;
+        }
+    }
+}
+
+.materialcardmaterials {
+    flex: 1 0 auto;
+}

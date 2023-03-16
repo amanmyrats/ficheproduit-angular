@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Material } from '../../models/material-class.model';
-import { MaterialService } from '../../services/material.service';
+import { Material } from 'src/app/chantier/models/material-class.model';
+import { MaterialService } from 'src/app/chantier/services/material.service';
 
 @Component({
   selector: 'app-material-edit',

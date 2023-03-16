@@ -7,7 +7,9 @@ const routes: Routes = [
   { path: '', redirectTo:'home', pathMatch:'full' },
   { path: 'home', component: HomeComponent },
   { path: 'chantier', 
-    loadChildren: () => import('./chantier/chantier.module').then(m => m.ChantierModule) },
+    loadChildren: () => import('./chantier/chantier.module').then(m => m.ChantierModule) 
+  },
+  
 ];
 
 @NgModule({

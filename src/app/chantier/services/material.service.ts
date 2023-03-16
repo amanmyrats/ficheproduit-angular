@@ -9,28 +9,30 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   providedIn: 'root'
 })
 export class MaterialService {
+  materialApiUrl: string = `${env.apiUrl}/chantier/materials`;
+
   constructor(
     private httpClient: HttpClient, 
     private fb: FormBuilder) { }
   
   getMaterials(): Observable<Material[]>{
-    return this.httpClient.get<Material[]>(`${env.apiUrl}/chantier/materials`);
+    return this.httpClient.get<Material[]>(`${this.materialApiUrl}`);
   }
 
   getMaterial(id: string): Observable<Material>{
-    return this.httpClient.get<Material>(`${env.apiUrl}/chantier/materials/${id}`);
+    return this.httpClient.get<Material>(`${this.materialApiUrl}/${id}`);
   }
 
   createMaterial(material: Material): Observable<Material>{
-    return this.httpClient.post<Material>(`${env.apiUrl}/chantier/materials`, material);
+    return this.httpClient.post<Material>(`${this.materialApiUrl}`, material);
   }
 
   updateMaterial(id: string, material: Material): Observable<Material> {
-    return this.httpClient.put<Material>(`${env.apiUrl}/chantier/materials/${id}`, material);
+    return this.httpClient.put<Material>(`${this.materialApiUrl}/${id}`, material);
   }
 
   deleteMaterial(id: any): Observable<string> {
-    return this.httpClient.delete<string>(`${env.apiUrl}/chantier/materials/${id}`);
+    return this.httpClient.delete<string>(`${this.materialApiUrl}/${id}`);
   }
 
   createMaterialFormGroup(material?: Material): FormGroup {
