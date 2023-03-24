@@ -25,6 +25,9 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MaterialcardmaterialTableComponent } from './components/materialcard/materialcardmaterial-table/materialcardmaterial-table.component';
+import { MaterialcardMaterialFormComponent } from './components/materialcard/materialcard-material-form/materialcard-material-form.component';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -42,6 +45,7 @@ import { MaterialcardmaterialTableComponent } from './components/materialcard/ma
     MaterialcardDetailComponent,
     MaterialDetailComponent,
     MaterialcardmaterialTableComponent,
+    MaterialcardMaterialFormComponent,
   ],
   imports: [
     CommonModule,
@@ -51,14 +55,20 @@ import { MaterialcardmaterialTableComponent } from './components/materialcard/ma
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
     MatCardModule,
     MatIconModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatDialogModule,
   ],
   exports: [
     MaterialFormComponent,
+  ],
+  providers: [
+    { provide: MatDialogRef, useValue: {} },
+    { provide: MAT_DIALOG_DATA, useValue: {} }
   ]
 })
 export class ChantierModule { }

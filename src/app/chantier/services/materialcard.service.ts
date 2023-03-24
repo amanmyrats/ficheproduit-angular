@@ -39,4 +39,15 @@ export class MaterialcardService {
     return this.httpClient.get<Materialcardmaterial[]>(`${this.materialcard_api_url}/${materialCardId}/materialcardmaterials`);
   }
 
+  createMaterialcardMaterial(materialcardId: string, materialcardMaterial: Materialcardmaterial): Observable<Materialcardmaterial> {
+    return this.httpClient.post<Materialcardmaterial>(`${this.materialcard_api_url}/${materialcardId}/materialcardmaterials`, materialcardMaterial);
+  }
+
+  updateMaterialcardMaterial(materialcardId: string, materialcardMaterialId: string, materialcardMaterial: Materialcardmaterial): Observable<Materialcardmaterial> {
+    return this.httpClient.put<Materialcardmaterial>(`${this.materialcard_api_url}/${materialcardId}/materialcardmaterials/${materialcardMaterialId}`, materialcardMaterial);
+  }
+
+  deleteMaterialcardMaterial(materialcardId: string, materialcardMaterialId: string): Observable<string> {
+    return this.httpClient.delete<string>(`${this.materialcard_api_url}/${materialcardId}/materialcardmaterials/${materialcardMaterialId}`);
+  }
 }

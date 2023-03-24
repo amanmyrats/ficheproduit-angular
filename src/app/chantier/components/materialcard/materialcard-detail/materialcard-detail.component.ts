@@ -8,7 +8,7 @@ import { MaterialcardService } from 'src/app/chantier/services/materialcard.serv
   styleUrls: ['./materialcard-detail.component.scss']
 })
 export class MaterialcardDetailComponent implements OnInit {
-
+  materialcardId: string;
 
   constructor (
     private materialcardService: MaterialcardService,
@@ -16,6 +16,6 @@ export class MaterialcardDetailComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
-
+    this.materialcardId = this.route.snapshot.params['id'];
   }
 }

@@ -1,0 +1,54 @@
+<form [formGroup]="materialcardMaterialForm" (ngSubmit)="onSubmit()">
+<mat-card>
+    <mat-card-header>
+        Material that belongs to Fiche Produit
+    </mat-card-header>
+
+    <!-- <form [formGroup]="material"> -->
+        
+        <mat-card-content>
+
+            <mat-form-field appearance="outline" class="material" [formGroup]="materialForm">
+                <mat-label *ngIf="initialMaterial">Current: {{initialMaterial.nameEn}}</mat-label>
+                <mat-label *ngIf="!initialMaterial">Material</mat-label>
+                <mat-select formControlName="id" [(value)]="initialMaterial">
+                    <ng-container *ngFor="let material of materials">
+                        <mat-option value="{{material.id}}">{{material.nameEn}}</mat-option>
+                    </ng-container>
+                </mat-select>
+            </mat-form-field>
+
+    <!-- </form> -->
+            
+        <mat-form-field appearance="outline">
+            <mat-label>Quantity</mat-label>
+            <input type="number" matInput formControlName="quantity">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" [formGroup]="unitForm">
+            <mat-label *ngIf="initialUnit">Current: {{initialUnit.code}}</mat-label>
+            <mat-label *ngIf="!initialUnit">Unit</mat-label>
+            <mat-select formControlName="id" [(value)]="initialUnit">
+                <ng-container *ngFor="let unit of units">
+                    <mat-option value="{{unit.id}}">{{unit.code}}</mat-option>
+                </ng-container>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Unit Price</mat-label>
+            <input type="number" matInput formControlName="unitPrice">
+            <span matTextPrefix>$&nbsp;</span>
+        </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions mat-dialog-actions>
+        <button mat-raised-button [mat-dialog-close]="false">
+            Cancel
+        </button>
+        <button mat-raised-button color="primary" type="submit">
+            {{ data.materialcardMaterialFormData ? 'Update' : 'Add'}}
+        </button>
+    </mat-card-actions>
+
+</mat-card>
+</form>
