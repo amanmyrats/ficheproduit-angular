@@ -28,6 +28,8 @@ import { MaterialcardmaterialTableComponent } from './components/materialcard/ma
 import { MaterialcardMaterialFormComponent } from './components/materialcard/materialcard-material-form/materialcard-material-form.component';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { MaterialcardroomTableComponent } from './components/materialcard/materialcardroom-table/materialcardroom-table.component';
+
 
 @NgModule({
   declarations: [
@@ -46,6 +48,7 @@ import { MatSelectModule } from '@angular/material/select';
     MaterialDetailComponent,
     MaterialcardmaterialTableComponent,
     MaterialcardMaterialFormComponent,
+    MaterialcardroomTableComponent,
   ],
   imports: [
     CommonModule,

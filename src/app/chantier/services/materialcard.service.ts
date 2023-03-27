@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment as env } from 'src/environments/environment';
+import { InventoryItem } from '../models/inventory-item.model';
 import { Materialcard } from '../models/materialcard.model';
 import { Materialcardmaterial } from '../models/materialcardmaterial.model';
 
@@ -35,6 +36,7 @@ export class MaterialcardService {
     return this.httpClient.put<Materialcard>(`${this.materialcard_api_url}/${id}`, materialcard);
   }
   
+  // MaterialcardMaterials
   getMaterialcardMaterials(materialCardId: string): Observable<Materialcardmaterial[]>{
     return this.httpClient.get<Materialcardmaterial[]>(`${this.materialcard_api_url}/${materialCardId}/materialcardmaterials`);
   }
@@ -50,4 +52,10 @@ export class MaterialcardService {
   deleteMaterialcardMaterial(materialcardId: string, materialcardMaterialId: string): Observable<string> {
     return this.httpClient.delete<string>(`${this.materialcard_api_url}/${materialcardId}/materialcardmaterials/${materialcardMaterialId}`);
   }
+
+  // InventoryItems
+  getInventoryItemsByMaterialcard(materialcardId: string): Observable<InventoryItem[]> {
+    return this.httpClient.get<InventoryItem[]>(`${this.materialcard_api_url}/${materialcardId}/inventoryitems`);
+  }
+
 }

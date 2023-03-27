@@ -218,6 +218,15 @@
     }
 }
 
-.materialcardmaterials {
+.materialcard-details {
+
     flex: 1 0 auto;
+
+    &-materials {
+        flex: 1 0 auto;
+    }
+
+    &-rooms {
+        flex: 1 0 auto;
+    }
 }

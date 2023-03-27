@@ -10,13 +10,13 @@ import { MaterialcardService } from 'src/app/chantier/services/materialcard.serv
 import { Unit } from 'src/app/shared/models/unit.model';
 import { MaterialcardMaterialFormComponent } from '../materialcard-material-form/materialcard-material-form.component';
 
-const nestedProperty = (data: any, sortHeaderId: string): string | number => {
-  return sortHeaderId
-    .split(".")
-    .reduce((accumulator, key) => accumulator && accumulator[key], data) as
-    | string
-    | number;
-};
+// const nestedProperty = (data: any, sortHeaderId: string): string | number => {
+//   return sortHeaderId
+//     .split(".")
+//     .reduce((accumulator, key) => accumulator && accumulator[key], data) as
+//     | string
+//     | number;
+// };
 
 @Component({
   selector: 'app-materialcardmaterial-table',
