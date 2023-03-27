@@ -58,4 +58,8 @@ export class MaterialcardService {
     return this.httpClient.get<InventoryItem[]>(`${this.materialcard_api_url}/${materialcardId}/inventoryitems`);
   }
 
+  createInventoryItemByMaterialcard(materialcardId: string, roomId: string, projectId: string, inventoryItem: InventoryItem): Observable<InventoryItem> {
+    return this.httpClient.post<InventoryItem>(`${this.materialcard_api_url}/${materialcardId}/inventoryitems?room_id=${roomId}&project_id=${projectId}`, inventoryItem);
+  }
+
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Materialcard } from 'src/app/chantier/models/materialcard.model';
 import { MaterialcardService } from 'src/app/chantier/services/materialcard.service';
 
 @Component({
@@ -8,6 +9,7 @@ import { MaterialcardService } from 'src/app/chantier/services/materialcard.serv
   styleUrls: ['./materialcard-detail.component.scss']
 })
 export class MaterialcardDetailComponent implements OnInit {
+  materialcard: Materialcard;
   materialcardId: string;
 
   constructor (
@@ -17,5 +19,15 @@ export class MaterialcardDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.materialcardId = this.route.snapshot.params['id'];
+    this.getMaterialcard(this.materialcardId);
+  }
+
+  getMaterialcard(id: string) {
+    this.materialcardService.getMaterialcard(id)
+      .subscribe((data: Materialcard) => {
+        this.materialcard = data;
+        console.log("Retreived MaterialCard");
+        console.log(data);
+      })
   }
 }

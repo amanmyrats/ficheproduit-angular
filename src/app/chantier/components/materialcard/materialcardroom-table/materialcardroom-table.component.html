@@ -1,10 +1,10 @@
 <mat-card>
     <mat-card-header>
         <div class="table-title">Inventory Information</div>
-        <!-- <button mat-fab extended color="primary" (click)="openCreateMaterialcardRoomFormDialog()">
+        <button mat-fab extended color="primary" (click)="openCreateMaterialcardroomFormDialog()">
             <mat-icon>add</mat-icon>
             Assign New Room
-          </button> -->
+          </button>
     </mat-card-header>
     <mat-card-content>
         <!-- <mat-form-field>
@@ -36,8 +36,8 @@
             <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef> </th>
                 <td mat-cell *matCellDef="let inventoryItem"> 
-                    <!-- <button mat-icon-button color="primary" (click)="openUpdateMaterialcardRoom(inventoryItem.id, inventoryItem)"><mat-icon>edit</mat-icon></button>
-                    <button mat-icon-button color="warn" (click)="deleteMaterialcardRoom(inventoryItem.id)"><mat-icon>delete</mat-icon></button>     -->
+                    <button mat-icon-button color="primary" (click)="openUpdateMaterialcardRoomFormDialog(inventoryItem.id, inventoryItem)"><mat-icon>edit</mat-icon></button>
+                    <button mat-icon-button color="warn" (click)="deleteInventoryItem(inventoryItem.id)"><mat-icon>delete</mat-icon></button>    
                 </td>
             </ng-container>
         

@@ -359,6 +359,10 @@
     </div>
     <div class="materialcard-details">
         <app-materialcardmaterial-table class="materialcard-details-materials"></app-materialcardmaterial-table>
-        <app-materialcardroom-table class="materialcard-details-rooms"></app-materialcardroom-table>
+        <app-materialcardroom-table 
+        class="materialcard-details-rooms" 
+        [projectId]="materialcard.id"
+        >
+    </app-materialcardroom-table>
     </div>
 </div>

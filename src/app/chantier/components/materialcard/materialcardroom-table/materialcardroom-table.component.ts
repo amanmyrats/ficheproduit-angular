@@ -1,11 +1,13 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { InventoryItem } from 'src/app/chantier/models/inventory-item.model';
+import { InventoryitemService } from 'src/app/chantier/services/inventoryitem.service';
 import { MaterialcardService } from 'src/app/chantier/services/materialcard.service';
+import { MaterialcardroomFormComponent } from '../materialcardroom-form/materialcardroom-form.component';
 
 @Component({
   selector: 'app-materialcardroom-table',
@@ -19,9 +21,11 @@ export class MaterialcardroomTableComponent implements OnInit {
   inventoryItems!: MatTableDataSource<InventoryItem>;
   columnsToDisplay = ['id', 'room', 'quantity', 'unit', 'actions'];
   materialcardId: string;
+  @Input() projectId: any = '';
 
   constructor(
-    private materialcardService: MaterialcardService,
+    private materialcardService: MaterialcardService, 
+    private inventoryItemService: InventoryitemService, 
     private route: ActivatedRoute,
     private dialog: MatDialog,
   ) { }
@@ -40,57 +44,56 @@ export class MaterialcardroomTableComponent implements OnInit {
       });
   }
 
-  // deleteMaterialcardMaterial(materialcardMaterialId: string) {
-  //   // console.log("deleting materialcardRoom");
-  //   // console.log(materialcardMaterialId);
-  //   this.materialcardService.deleteMaterialcardMaterial(this.materialcardId, materialcardMaterialId)
-  //     .subscribe({
-  //       next: (data: string) => {
-  //         console.log("deleted");
-  //         this.getInventoryItemsByMaterialcard();
-  //       },
-  //       error: (err: any) => {
-  //         console.log("error when deleting");
-  //         console.log(err);
-  //       }
-  //     });
-  // }
+  deleteInventoryItem(inventoryItemId: string) {
+    this.inventoryItemService.deleteInventoryItem(inventoryItemId)
+      .subscribe({
+        next: (data: string) => {
+          console.log("deleted");
+          this.getInventoryItemsByMaterialcard();
+        },
+        error: (err: any) => {
+          console.log("error when deleting");
+          console.log(err);
+        }
+      });
+  }
 
-  // openCreateMaterialcardMaterialFormDialog() {
-  //   const dialogRef = this.dialog.open(MaterialcardMaterialFormComponent, {
-  //     data: {
-  //       materialcardMaterialFormData: null,
-  //       materialcardId: this.materialcardId,
-  //     }
-  //   });
-  //   dialogRef.afterClosed().subscribe({
-  //     next: (val) => {
-  //       // console.log("here is afterClosed");
-  //       if (val) {
-  //         this.getInventoryItemsByMaterialcard();
-  //       }
-  //     }
-  //   });
-  // }
+  openCreateMaterialcardroomFormDialog() {
+    const dialogRef = this.dialog.open(MaterialcardroomFormComponent, {
+      data: {
+        materialcardRoomFormData: null,
+        materialcardId: this.materialcardId,
+        projectId: this.projectId, 
+      }
+    });
+    dialogRef.afterClosed().subscribe({
+      next: (val) => {
+        // console.log("here is afterClosed");
+        if (val) {
+          this.getInventoryItemsByMaterialcard();
+        }
+      }
+    });
+  }
 
-  // openUpdateMaterialcardMaterial(
-  //   materialcardMaterialId: string,
-  //   materialcardMaterialFormData: MaterialcardRoom,) {
-  //   const dialogRef = this.dialog.open(MaterialcardMaterialFormComponent, {
-  //     data: {
-  //       materialcardMaterialFormData: materialcardMaterialFormData,
-  //       materialcardId: this.materialcardId,
-  //     }
-  //   });
-  //   dialogRef.afterClosed().subscribe({
-  //     next: (val) => {
-  //       // console.log("here is afterClosed");
-  //       if (val) {
-  //         this.getInventoryItemsByMaterialcard();
-  //       }
-  //     }
-  //   });
-  // }
+  openUpdateMaterialcardRoomFormDialog(
+    inventoryItemId: string,
+    materialcardRoomFormData: InventoryItem,) {
+    const dialogRef = this.dialog.open(MaterialcardroomFormComponent, {
+      data: {
+        materialcardRoomFormData: materialcardRoomFormData,
+        materialcardId: this.materialcardId,
+      }
+    });
+    dialogRef.afterClosed().subscribe({
+      next: (val) => {
+        // console.log("here is afterClosed");
+        if (val) {
+          this.getInventoryItemsByMaterialcard();
+        }
+      }
+    });
+  }
 
   // applyFilter(event: Event) {
   //   const filterValue = (event.target as HTMLInputElement).value;
