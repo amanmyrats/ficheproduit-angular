@@ -4,10 +4,11 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
-import { InventoryItem } from 'src/app/chantier/models/inventory-item.model';
+import { Inventoryitem } from 'src/app/chantier/models/inventoryitem.model';
+import { Materialcard } from 'src/app/chantier/models/materialcard.model';
 import { InventoryitemService } from 'src/app/chantier/services/inventoryitem.service';
 import { MaterialcardService } from 'src/app/chantier/services/materialcard.service';
-import { MaterialcardroomFormComponent } from '../materialcardroom-form/materialcardroom-form.component';
+import { InventoryitemFormComponent } from '../../shared/inventoryitem-form/inventoryitem-form.component';
 
 @Component({
   selector: 'app-materialcardroom-table',
@@ -18,14 +19,17 @@ export class MaterialcardroomTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  inventoryItems!: MatTableDataSource<InventoryItem>;
-  columnsToDisplay = ['id', 'room', 'quantity', 'unit', 'actions'];
+  inventoryItems!: MatTableDataSource<Inventoryitem>;
+  columnsToDisplay = ['id', 'room', 'quantity', 'unit', 'actions', 'inventoryitemannexe5s'];
   materialcardId: string;
+  currentInventoryItem: Inventoryitem;
+
   @Input() projectId: any = '';
+  @Input() materialcard: Materialcard;
 
   constructor(
-    private materialcardService: MaterialcardService, 
-    private inventoryItemService: InventoryitemService, 
+    private materialcardService: MaterialcardService,
+    private inventoryItemService: InventoryitemService,
     private route: ActivatedRoute,
     private dialog: MatDialog,
   ) { }
@@ -37,7 +41,7 @@ export class MaterialcardroomTableComponent implements OnInit {
 
   getInventoryItemsByMaterialcard(): void {
     this.materialcardService.getInventoryItemsByMaterialcard(this.materialcardId)
-      .subscribe((data: InventoryItem[]) => {
+      .subscribe((data: Inventoryitem[]) => {
         this.inventoryItems = new MatTableDataSource(data);
         this.inventoryItems.sort = this.sort;
         this.inventoryItems.paginator = this.paginator;
@@ -59,11 +63,11 @@ export class MaterialcardroomTableComponent implements OnInit {
   }
 
   openCreateMaterialcardroomFormDialog() {
-    const dialogRef = this.dialog.open(MaterialcardroomFormComponent, {
+    const dialogRef = this.dialog.open(InventoryitemFormComponent, {
       data: {
-        materialcardRoomFormData: null,
-        materialcardId: this.materialcardId,
-        projectId: this.projectId, 
+        inventoryItemDataFromTable: null,
+        materialcard: this.materialcard,
+        projectId: this.projectId,
       }
     });
     dialogRef.afterClosed().subscribe({
@@ -78,11 +82,14 @@ export class MaterialcardroomTableComponent implements OnInit {
 
   openUpdateMaterialcardRoomFormDialog(
     inventoryItemId: string,
-    materialcardRoomFormData: InventoryItem,) {
-    const dialogRef = this.dialog.open(MaterialcardroomFormComponent, {
+    inventoryItemDataFromTable: Inventoryitem,
+  ) {
+    inventoryItemDataFromTable.materialcard = this.materialcard;
+    const dialogRef = this.dialog.open(InventoryitemFormComponent, {
       data: {
-        materialcardRoomFormData: materialcardRoomFormData,
-        materialcardId: this.materialcardId,
+        inventoryItemDataFromTable: inventoryItemDataFromTable,
+        materialcard: this.materialcard,
+        projectId: this.projectId,
       }
     });
     dialogRef.afterClosed().subscribe({
@@ -93,6 +100,12 @@ export class MaterialcardroomTableComponent implements OnInit {
         }
       }
     });
+
+  }
+
+
+  getCurrentInventoryItem(inventoryItem: Inventoryitem): Inventoryitem {
+    return inventoryItem;
   }
 
   // applyFilter(event: Event) {

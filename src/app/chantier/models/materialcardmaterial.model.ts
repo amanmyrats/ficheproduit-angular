@@ -1,5 +1,5 @@
 import { Unit } from "src/app/shared/models/unit.model";
-import { Material } from "./material-class.model";
+import { Material } from "./material.model";
 import { Materialcard } from "./materialcard.model";
 
 export class Materialcardmaterial {

@@ -1,3 +1,4 @@
+
 <mat-card>
     <mat-card-header>
         <div class="table-title">Inventory Information</div>
@@ -20,7 +21,7 @@
             
                 <ng-container matColumnDef="room">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-                    <td mat-cell *matCellDef="let inventoryItem"> {{inventoryItem.inventory.room.nameEn}} </td>
+                    <td mat-cell *matCellDef="let inventoryItem"> {{inventoryItem.room?.nameEn}} </td>
                 </ng-container>
         
             <ng-container matColumnDef="quantity">
@@ -36,8 +37,25 @@
             <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef> </th>
                 <td mat-cell *matCellDef="let inventoryItem"> 
-                    <button mat-icon-button color="primary" (click)="openUpdateMaterialcardRoomFormDialog(inventoryItem.id, inventoryItem)"><mat-icon>edit</mat-icon></button>
-                    <button mat-icon-button color="warn" (click)="deleteInventoryItem(inventoryItem.id)"><mat-icon>delete</mat-icon></button>    
+                    <button mat-icon-button color="primary" (click)="openUpdateMaterialcardRoomFormDialog(inventoryItem.id, inventoryItem)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button color="warn" (click)="deleteInventoryItem(inventoryItem.id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="inventoryitemannexe5s">
+                <th mat-header-cell *matHeaderCellDef> Annexe5s </th>
+                <td mat-cell *matCellDef="let inventoryItem"> 
+                    <app-inventoryitemannexe5-table 
+                    [inventoryItemFromParent]="inventoryItem" 
+                    [projectIdFromParent]="projectId"
+                    >
+                        
+                    </app-inventoryitemannexe5-table>
+                    
                 </td>
             </ng-container>
         

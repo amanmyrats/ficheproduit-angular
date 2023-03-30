@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Material } from '../../../models/material-class.model';
+import { Material } from '../../../models/material.model';
 import { MaterialService } from '../../../services/material.service';
 
 @Component({

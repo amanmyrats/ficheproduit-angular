@@ -1,3 +1,5 @@
+import { Project } from "src/app/shared/models/project.model";
+
 export class Materialcard {
     public id?: number;
     public number: string;
@@ -9,7 +11,7 @@ export class Materialcard {
     // public supplier?: Supplier;
     // public origin?: Country;
     // public manufacturedIn?: Country;
-    // public project?: Project;
+    public project?: Project;
     public locationFr?: string;
     public locationRu?: string;
     public zone?: string;

@@ -2,7 +2,7 @@ import { Component, Inject, Input, OnInit, Optional } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { Material } from 'src/app/chantier/models/material-class.model';
+import { Material } from 'src/app/chantier/models/material.model';
 import { Materialcardmaterial } from 'src/app/chantier/models/materialcardmaterial.model';
 import { MaterialService } from 'src/app/chantier/services/material.service';
 import { MaterialcardService } from 'src/app/chantier/services/materialcard.service';
@@ -10,11 +10,11 @@ import { Unit } from 'src/app/shared/models/unit.model';
 import { UnitService } from 'src/app/shared/services/unit.service';
 
 @Component({
-  selector: 'app-materialcard-material-form',
-  templateUrl: './materialcard-material-form.component.html',
-  styleUrls: ['./materialcard-material-form.component.scss']
+  selector: 'app-materialcardmaterial-form',
+  templateUrl: './materialcardmaterial-form.component.html',
+  styleUrls: ['./materialcardmaterial-form.component.scss']
 })
-export class MaterialcardMaterialFormComponent implements OnInit {
+export class MaterialcardmaterialFormComponent implements OnInit {
   materialcardMaterialForm: FormGroup;
   materialForm: FormGroup;
   unitForm: FormGroup;
@@ -29,7 +29,7 @@ export class MaterialcardMaterialFormComponent implements OnInit {
     private materialService: MaterialService,
     private materialcardService: MaterialcardService,
     private unitService: UnitService,
-    @Optional() private dialogRef: MatDialogRef<MaterialcardMaterialFormComponent>,
+    @Optional() private dialogRef: MatDialogRef<MaterialcardmaterialFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
     this.materialcardMaterialForm = this.fb.group({
@@ -75,10 +75,8 @@ export class MaterialcardMaterialFormComponent implements OnInit {
 
   onSubmit() {
     console.log(this.materialcardMaterialForm.value);
-    this.materialcardMaterialForm.controls['material']
-      .setValue(this.materialForm.value);
-    this.materialcardMaterialForm.controls['unit']
-      .setValue(this.unitForm.value);
+    this.materialcardMaterialForm.controls['material'].setValue(this.materialForm.value);
+    this.materialcardMaterialForm.controls['unit'].setValue(this.unitForm.value);
     console.log(this.materialcardMaterialForm.value);
 
     if (this.materialcardMaterialForm.valid) {

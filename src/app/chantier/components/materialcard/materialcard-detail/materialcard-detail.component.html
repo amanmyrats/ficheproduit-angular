@@ -1,13 +1,13 @@
 <div style="display: flex; flex-wrap: wrap;">
     <div class="a4">
         <mat-card>
-    
+
             <!-- Logo and Material Name -->
             <div class="materialcard-header horizontal-block-main">
                 <div class="materialcard-header-logo">
                     <img src="assets/img/bytk_logo.png" alt="Material card image" class="mat-card-image">
                 </div>
-    
+
                 <div class="vertical-block materialcard-header-title border-primary-left">
                     <div class="label label-center materialcard-header-title-name border-primary-bottom">
                         FICHE PRODUIT - КАРТОЧКА ИЗДЕЛИЯ
@@ -18,7 +18,7 @@
                                 Nom du produit:
                             </div>
                             <div class="content">
-                                HYRENE 35 PY RGH
+                                {{materialcard ? materialcard.nameEn : "" }}
                             </div>
                         </div>
                         <div class="materialcard-header-title-names-ru horizontal-block">
@@ -26,13 +26,13 @@
                                 Nom du produit:
                             </div>
                             <div class="content">
-                                HYRENE 35 PY RGH
+                                {{ materialcard ? materialcard.nameRu : "" }}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-    
+
             <!-- Chantier -->
             <div class="horizontal-block-main chantier">
                 <div class="vertical-block">
@@ -41,8 +41,7 @@
                             Chantier:
                         </div>
                         <div class="content">
-                            CONSTRUCTION D’UN NOUVEAU BATIMENT A LA PLACE DE LA TRIBUNE GOUVERNEMENTALE DANS LA VILLE
-                            D’ACHGABAT
+                            {{ materialcard ? materialcard.project?.nameFr : "" }}
                         </div>
                     </div>
                     <div class="chantier-name horizontal-block">
@@ -50,12 +49,12 @@
                             Стройка:
                         </div>
                         <div class="content">
-                            СТРОИТЕЛЬСТВО НОВОГО ЗДАНИЯ НА МЕСТЕ ПРАВИТЕЛЬСТВЕННОЙ ТРИБУНЫ В ГОРОДЕ АШХАБАДЕ
+                            {{ materialcard ? materialcard.project?.nameFr : "" }}
                         </div>
                     </div>
                 </div>
             </div>
-    
+
             <!-- Supplier, Origin, Manufactured In -->
             <div class="horizontal-block-main supplier">
                 <div class="vertical-block border-primary-right">
@@ -113,7 +112,7 @@
                     </div>
                 </div>
             </div>
-    
+
             <!-- Location -->
             <div class="horizontal-block-main location">
                 <div class="vertical-block">
@@ -135,7 +134,7 @@
                     </div>
                 </div>
             </div>
-    
+
             <!-- Description -->
             <div class="horizontal-block-main description">
                 <div class="vertical-block border-primary-right">
@@ -143,9 +142,7 @@
                         DESCRIPTION DU PRODUIT
                     </div>
                     <div class="content">
-                        SikaLatex® est une dispersion aqueuse de résine synthétique qui se présente sous la forme d’un
-                        liquide laiteux concentré. Parfaitement miscible, il s’ajoute directement à l’eau de gâchage des
-                        mortiers de ciment.
+                        {{ materialcard ? materialcard.descFr : "" }}
                     </div>
                 </div>
                 <div class="vertical-block">
@@ -153,12 +150,11 @@
                         ОПИСАНИЕ ИЗДЕЛИЯ
                     </div>
                     <div class="content">
-                        SikaLatex® - это водная дисперсия синтетической смолы в форме концентрированной молочной жидкости. Идеально
-                        смешивается, добавляется на прямую в воду для приготовления цементных растворов.
+                        {{ materialcard ? materialcard.descRu : "" }}
                     </div>
                 </div>
             </div>
-    
+
             <!-- Protocal, Observation, Preparer and Image -->
             <div class="horizontal-block-main protocol">
                 <div class="vertical-block protocol-protocol">
@@ -167,13 +163,13 @@
                             Procès verbaux:
                         </div>
                         <div class="content border-secondary-bottom">
-                            
+
                         </div>
                         <div class="label label-left">
                             Протоколы:
                         </div>
                         <div class="content">
-                            
+
                         </div>
                     </div>
                     <div class="vertical-block border-primary-bottom">
@@ -181,13 +177,13 @@
                             Observations et avis de l'organisme de contrôle:
                         </div>
                         <div class="content border-secondary-bottom">
-                            
+
                         </div>
                         <div class="label label-left">
                             Замечания И Заключение Тех. Надзора:
                         </div>
                         <div class="content">
-                            
+
                         </div>
                     </div>
                     <div class="vertical-block border-primary-bottom emetteur-block">
@@ -211,10 +207,10 @@
                     </div>
                 </div>
                 <div class="vertical-block protocol-image border-primary-left">
-                    <img  src="assets/img/achat.jpg" alt="Material Card Image">
+                    <img src="assets/img/achat.jpg" alt="Material Card Image">
                 </div>
             </div>
-    
+
             <!-- Signatures -->
             <div class="horizontal-block-main signature">
                 <!-- <div class="vertical-block vertical-block-sign">
@@ -286,7 +282,7 @@
                     </div>
                 </div>
             </div>
-    
+
             <!-- Footer -->
             <div class="horizontal-block-main materialcard-footer">
                 <div class="vertical-block border-primary-right">
@@ -354,15 +350,20 @@
                     </div>
                 </div>
             </div>
-    
+
         </mat-card>
     </div>
     <div class="materialcard-details">
-        <app-materialcardmaterial-table class="materialcard-details-materials"></app-materialcardmaterial-table>
-        <app-materialcardroom-table 
-        class="materialcard-details-rooms" 
-        [projectId]="materialcard.id"
-        >
-    </app-materialcardroom-table>
+
+        <app-materialcardmaterial-table class="materialcard-details-materials">
+        </app-materialcardmaterial-table>
+
+        <ng-container *ngIf="materialcard">
+            <app-materialcardroom-table class="materialcard-details-rooms" 
+            [projectId]="materialcard.project?.id" 
+            [materialcard]="materialcard">
+            </app-materialcardroom-table>
+        </ng-container>
+
     </div>
 </div>

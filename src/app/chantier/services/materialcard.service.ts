@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment as env } from 'src/environments/environment';
-import { InventoryItem } from '../models/inventory-item.model';
+import { Inventoryitem } from '../models/inventoryitem.model';
 import { Materialcard } from '../models/materialcard.model';
 import { Materialcardmaterial } from '../models/materialcardmaterial.model';
 
@@ -21,7 +21,9 @@ export class MaterialcardService {
   }
 
   getMaterialcard(id: string): Observable<Materialcard> {
-    return this.httpClient.get<Materialcard>(`${this.materialcard_api_url}/${id}`);
+    return this.httpClient.get<Materialcard>(`${this.materialcard_api_url}/${id}`
+    // ,{ headers: new HttpHeaders({'Accept':'application/json;charset=UTF-8'})}
+    );
   }
 
   createMaterialcard(materialcard: Materialcard): Observable<Materialcard>{
@@ -54,12 +56,18 @@ export class MaterialcardService {
   }
 
   // InventoryItems
-  getInventoryItemsByMaterialcard(materialcardId: string): Observable<InventoryItem[]> {
-    return this.httpClient.get<InventoryItem[]>(`${this.materialcard_api_url}/${materialcardId}/inventoryitems`);
+  getInventoryItemsByMaterialcard(materialcardId: string): Observable<Inventoryitem[]> {
+    return this.httpClient.get<Inventoryitem[]>(`${this.materialcard_api_url}/${materialcardId}/inventoryitems`
+    // , { headers: new HttpHeaders({'Accept': 'application/json; charset=utf-8'})}
+    );
   }
 
-  createInventoryItemByMaterialcard(materialcardId: string, roomId: string, projectId: string, inventoryItem: InventoryItem): Observable<InventoryItem> {
-    return this.httpClient.post<InventoryItem>(`${this.materialcard_api_url}/${materialcardId}/inventoryitems?room_id=${roomId}&project_id=${projectId}`, inventoryItem);
+  createInventoryItemByMaterialcard(materialcardId: string, roomId: string, projectId: string, inventoryItem: Inventoryitem): Observable<Inventoryitem> {
+    return this.httpClient.post<Inventoryitem>(`${this.materialcard_api_url}/${materialcardId}/inventoryitems?room_id=${roomId}&project_id=${projectId}`, inventoryItem);
+  }
+
+  updateInventoryItemByMaterialcard(materialcardId: string, projectId: string, roomId: string, id: string, inventoryItem: Inventoryitem): Observable<Inventoryitem> {
+    return this.httpClient.put<Inventoryitem>(`${this.materialcard_api_url}/${materialcardId}/inventoryitems/${id}?room_id=${roomId}&project_id=${projectId}`, inventoryItem);
   }
 
 }

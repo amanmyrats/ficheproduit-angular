@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Material } from '../models/material-class.model';
+import { Material } from '../models/material.model';
 import { environment as env } from 'src/environments/environment';
 import { FormBuilder, FormGroup } from '@angular/forms';
 

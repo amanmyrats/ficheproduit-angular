@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ChantierRoutingModule } from './chantier-routing.module';
@@ -25,11 +25,13 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MaterialcardmaterialTableComponent } from './components/materialcard/materialcardmaterial-table/materialcardmaterial-table.component';
-import { MaterialcardMaterialFormComponent } from './components/materialcard/materialcard-material-form/materialcard-material-form.component';
+import { MaterialcardmaterialFormComponent } from './components/materialcard/materialcardmaterial-form/materialcardmaterial-form.component';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MaterialcardroomTableComponent } from './components/materialcard/materialcardroom-table/materialcardroom-table.component';
-import { MaterialcardroomFormComponent } from './components/materialcard/materialcardroom-form/materialcardroom-form.component';
+import { InventoryitemFormComponent } from './components/shared/inventoryitem-form/inventoryitem-form.component';
+import { Inventoryitemannexe5TableComponent } from './components/materialcard/inventoryitemannexe5-table/inventoryitemannexe5-table.component';
+import { Inventoryitemannexe5FormComponent } from './components/materialcard/inventoryitemannexe5-form/inventoryitemannexe5-form.component';
 
 
 @NgModule({
@@ -48,9 +50,11 @@ import { MaterialcardroomFormComponent } from './components/materialcard/materia
     MaterialcardDetailComponent,
     MaterialDetailComponent,
     MaterialcardmaterialTableComponent,
-    MaterialcardMaterialFormComponent,
+    MaterialcardmaterialFormComponent,
     MaterialcardroomTableComponent,
-    MaterialcardroomFormComponent,
+    InventoryitemFormComponent,
+    Inventoryitemannexe5TableComponent,
+    Inventoryitemannexe5FormComponent,
   ],
   imports: [
     CommonModule,
@@ -74,6 +78,7 @@ import { MaterialcardroomFormComponent } from './components/materialcard/materia
   providers: [
     { provide: MatDialogRef, useValue: {} },
     { provide: MAT_DIALOG_DATA, useValue: {} }
-  ]
+  ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class ChantierModule { }

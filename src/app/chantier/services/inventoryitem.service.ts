@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment as env } from 'src/environments/environment';
-import { InventoryItem } from '../models/inventory-item.model';
+import { Inventoryitem } from '../models/inventoryitem.model';
+import { Inventoryitemannexe5 } from '../models/inventoryitemannexe5.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,16 +14,25 @@ export class InventoryitemService {
     private httpClient: HttpClient
   ) { }
   
-  getInventoryItem(id: string): Observable<InventoryItem> {
-    return this.httpClient.get<InventoryItem>(`${env.apiUrl}/chantier/inventoryitems/${id}`);
+  getInventoryItem(id: string): Observable<Inventoryitem> {
+    return this.httpClient.get<Inventoryitem>(`${env.apiUrl}/chantier/inventoryitems/${id}`);
   }
 
-  updateInventoryItem(id: string, inventoryItem: InventoryItem): Observable<InventoryItem> {
-    return this.httpClient.put<InventoryItem>(`${env.apiUrl}/inventoryitems/${id}`, inventoryItem);
+  createInventoryItem(inventoryItem: Inventoryitem): Observable<Inventoryitem> {
+    return this.httpClient.post<Inventoryitem>(`${env.apiUrl}/chantier/inventoryitems`, inventoryItem);
+  }
+
+  updateInventoryItem(id: string, inventoryItem: Inventoryitem): Observable<Inventoryitem> {
+    return this.httpClient.put<Inventoryitem>(`${env.apiUrl}/chantier/inventoryitems/${id}`, inventoryItem);
   }
 
   deleteInventoryItem(id: string): Observable<string> {
     return this.httpClient.delete<string>(`${env.apiUrl}/chantier/inventoryitems/${id}`);
+  }
+
+  // Inventory Item Annexe5s
+  getInventoryItemAnnexe5sByInventoryItem(inventoryItemId: string): Observable<Inventoryitemannexe5[]> {
+    return this.httpClient.get<Inventoryitemannexe5[]>(`${env.apiUrl}/chantier/inventoryitems/${inventoryItemId}/inventoryitemannexe5s`);
   }
 
 }

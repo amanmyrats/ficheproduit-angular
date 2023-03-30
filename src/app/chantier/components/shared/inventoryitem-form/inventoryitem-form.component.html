@@ -1,0 +1,41 @@
+<form [formGroup]="inventoryItemForm" (ngSubmit)="onSubmit()">
+    <mat-card>
+        <mat-card-header>
+            Which room this fiche produit belogs to?
+        </mat-card-header>
+
+        <mat-card-content>
+
+            <mat-form-field appearance="outline" class="name" [formGroup]="roomForm">
+                <mat-label>Room</mat-label>
+                <mat-select formControlName="id">
+                    <mat-option [value]="room.id" *ngFor="let room of rooms">{{room.code}} -
+                        {{room.nameEn}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Quantity</mat-label>
+                <input type="number" matInput formControlName="quantity">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" [formGroup]="unitForm">
+                <mat-label>Unit</mat-label>
+                <mat-select formControlName="id">
+                    <mat-option [value]="unit.id" *ngFor="let unit of units">{{ unit.code }}</mat-option>
+                </mat-select>
+
+            </mat-form-field>
+
+        </mat-card-content>
+        <mat-card-actions mat-dialog-actions>
+            <button mat-raised-button [mat-dialog-close]="false">
+                Cancel
+            </button>
+            <button mat-raised-button color="primary" type="submit">
+                {{ data.inventoryItemDataFromTable ? 'Update' : 'Add'}}
+            </button>
+        </mat-card-actions>
+
+    </mat-card>
+</form>

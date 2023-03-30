@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Material } from 'src/app/chantier/models/material-class.model';
+import { Material } from 'src/app/chantier/models/material.model';
 import { MaterialService } from 'src/app/chantier/services/material.service';
 
 @Component({

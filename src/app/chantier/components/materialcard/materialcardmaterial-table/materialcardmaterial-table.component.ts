@@ -4,11 +4,11 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
-import { Material } from 'src/app/chantier/models/material-class.model';
+import { Material } from 'src/app/chantier/models/material.model';
 import { Materialcardmaterial } from 'src/app/chantier/models/materialcardmaterial.model';
 import { MaterialcardService } from 'src/app/chantier/services/materialcard.service';
 import { Unit } from 'src/app/shared/models/unit.model';
-import { MaterialcardMaterialFormComponent } from '../materialcard-material-form/materialcard-material-form.component';
+import { MaterialcardmaterialFormComponent } from '../materialcardmaterial-form/materialcardmaterial-form.component';
 
 // const nestedProperty = (data: any, sortHeaderId: string): string | number => {
 //   return sortHeaderId
@@ -68,7 +68,7 @@ export class MaterialcardmaterialTableComponent implements OnInit {
   }
 
   openCreateMaterialcardMaterialFormDialog() {
-    const dialogRef = this.dialog.open(MaterialcardMaterialFormComponent, {
+    const dialogRef = this.dialog.open(MaterialcardmaterialFormComponent, {
       data: {
         materialcardMaterialFormData: null,
         materialcardId: this.materialcardId,
@@ -87,7 +87,7 @@ export class MaterialcardmaterialTableComponent implements OnInit {
   openUpdateMaterialcardMaterial(
     materialcardMaterialId: string,
     materialcardMaterialFormData: Materialcardmaterial,) {
-    const dialogRef = this.dialog.open(MaterialcardMaterialFormComponent, {
+    const dialogRef = this.dialog.open(MaterialcardmaterialFormComponent, {
       data: {
         materialcardMaterialFormData: materialcardMaterialFormData,
         materialcardId: this.materialcardId,

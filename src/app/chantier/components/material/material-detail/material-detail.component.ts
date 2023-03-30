@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Material } from 'src/app/chantier/models/material-class.model';
+import { Material } from 'src/app/chantier/models/material.model';
 import { MaterialService } from 'src/app/chantier/services/material.service';
 
 @Component({

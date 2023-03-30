@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormGroupDirective } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Material } from '../../../models/material-class.model';
+import { Material } from '../../../models/material.model';
 import { MaterialService } from '../../../services/material.service';
 
 @Component({
