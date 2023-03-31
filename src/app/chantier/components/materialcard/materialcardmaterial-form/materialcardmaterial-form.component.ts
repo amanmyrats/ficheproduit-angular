@@ -1,11 +1,10 @@
 import { Component, Inject, Input, OnInit, Optional } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
 import { Material } from 'src/app/chantier/models/material.model';
 import { Materialcardmaterial } from 'src/app/chantier/models/materialcardmaterial.model';
 import { MaterialService } from 'src/app/chantier/services/material.service';
-import { MaterialcardService } from 'src/app/chantier/services/materialcard.service';
+import { MaterialcardmaterialService } from 'src/app/chantier/services/materialcardmaterial.service';
 import { Unit } from 'src/app/shared/models/unit.model';
 import { UnitService } from 'src/app/shared/services/unit.service';
 
@@ -16,28 +15,31 @@ import { UnitService } from 'src/app/shared/services/unit.service';
 })
 export class MaterialcardmaterialFormComponent implements OnInit {
   materialcardMaterialForm: FormGroup;
+  materialcardForm: FormGroup;
   materialForm: FormGroup;
   unitForm: FormGroup;
   units: Unit[];
   materials: Material[];
-  initialMaterial: any;
-  initialUnit: any;
 
   constructor(
     private fb: FormBuilder,
-    private route: ActivatedRoute,
     private materialService: MaterialService,
-    private materialcardService: MaterialcardService,
+    private materialcardMaterialService: MaterialcardmaterialService, 
     private unitService: UnitService,
     @Optional() private dialogRef: MatDialogRef<MaterialcardmaterialFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
     this.materialcardMaterialForm = this.fb.group({
       id: '',
-      quantity: '',
+      materialcard: '',
       material: '',
+      quantity: '',
       unit: '',
       unitPrice: ''
+    });
+
+    this.materialcardForm = this.fb.group({
+      id: '',
     });
 
     this.materialForm = this.fb.group({
@@ -58,35 +60,39 @@ export class MaterialcardmaterialFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    if (this.data.materialcardMaterialFormData) {
-      console.log("material patch value from table");
-      // console.log(this.data.materialcardMaterialFormData);
-      // console.log(this.data.materialFormData);
-      // console.log(this.data.unitFormData);
-      this.materialcardMaterialForm.patchValue(this.data.materialcardMaterialFormData);
-      this.materialForm.patchValue(this.data.materialcardMaterialFormData.material);
-      this.unitForm.patchValue(this.data.materialcardMaterialFormData.unit);
-      this.initialMaterial = this.data.materialcardMaterialFormData.material;
-      this.initialUnit = this.data.materialcardMaterialFormData.unit;
+    
+    // UPDATE
+    if (this.data.materialcardMaterialFromTable) {
+      this.materialcardMaterialForm.patchValue(this.data.materialcardMaterialFromTable);
+      this.materialcardForm.patchValue(this.data.materialcardMaterialFromTable.materialcard);
+      this.materialForm.patchValue(this.data.materialcardMaterialFromTable.material);
+      this.unitForm.patchValue(this.data.materialcardMaterialFromTable.unit);
+    }
+    
+    // CREATE
+    if (this.data.materialcardFromTable) {
+      this.materialcardForm.patchValue(this.data.materialcardFromTable);
     }
 
   }
 
   onSubmit() {
-    console.log(this.materialcardMaterialForm.value);
+    this.materialcardMaterialForm.controls['materialcard'].setValue(this.materialcardForm.value);
     this.materialcardMaterialForm.controls['material'].setValue(this.materialForm.value);
     this.materialcardMaterialForm.controls['unit'].setValue(this.unitForm.value);
-    console.log(this.materialcardMaterialForm.value);
+    // console.log("submitting");
+    // console.log(this.materialcardMaterialForm.value);
+    // console.log("submitting end");
 
     if (this.materialcardMaterialForm.valid) {
-      if (this.data.materialcardMaterialFormData) {
+      if (this.data.materialcardMaterialFromTable) {
         // update
-        this.materialcardService.createMaterialcardMaterial(this.data.materialcardId, this.materialcardMaterialForm.value)
+        this.materialcardMaterialService.updateMaterialCardMaterial(this.materialcardMaterialForm.controls['id'].value, this.materialcardMaterialForm.value)
           .subscribe({
             next: (materialcardMaterial: Materialcardmaterial) => {
-              console.log("MaterialcardMaterial was udpated.");
-              console.log(materialcardMaterial);
+              // console.log("MaterialcardMaterial was updated.");
+              // console.log(materialcardMaterial);
+              // console.log("MaterialcardMaterial was updated.");
               this.dialogRef.close(true);
             },
             error: (err: any) => {
@@ -95,12 +101,12 @@ export class MaterialcardmaterialFormComponent implements OnInit {
           })
       } else {
         // add
-        console.log("MaterialcardId from data " + this.data.materialcardId);
-
-        this.materialcardService.createMaterialcardMaterial(this.data.materialcardId, this.materialcardMaterialForm.value)
+        this.materialcardMaterialService.createMaterialCardMaterial(this.materialcardMaterialForm.value)
           .subscribe({
             next: (materialcardMaterial: Materialcardmaterial) => {
-              console.log("New MaterialcardMaterial was added.");
+              // console.log("New MaterialcardMaterial was added.");
+              // console.log(materialcardMaterial);
+              // console.log("New MaterialcardMaterial was added.");
               this.dialogRef.close(true);
             },
             error: (err: any) => {

@@ -1,22 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
-import { Material } from 'src/app/chantier/models/material.model';
+import { Materialcard } from 'src/app/chantier/models/materialcard.model';
 import { Materialcardmaterial } from 'src/app/chantier/models/materialcardmaterial.model';
 import { MaterialcardService } from 'src/app/chantier/services/materialcard.service';
-import { Unit } from 'src/app/shared/models/unit.model';
+import { MaterialcardmaterialService } from 'src/app/chantier/services/materialcardmaterial.service';
 import { MaterialcardmaterialFormComponent } from '../materialcardmaterial-form/materialcardmaterial-form.component';
-
-// const nestedProperty = (data: any, sortHeaderId: string): string | number => {
-//   return sortHeaderId
-//     .split(".")
-//     .reduce((accumulator, key) => accumulator && accumulator[key], data) as
-//     | string
-//     | number;
-// };
 
 @Component({
   selector: 'app-materialcardmaterial-table',
@@ -27,23 +19,28 @@ export class MaterialcardmaterialTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
+  @Input() projectIdFromParent: any = '';
+  @Input() materialcardFromParent: Materialcard;
+  @Input() materialcardIdFromParent: number | undefined;
+
+
   materialcardMaterials!: MatTableDataSource<Materialcardmaterial>;
-  columnsToDisplay = ['id', 'material', 'quantity', 'unit', 'unitPrice', 'actions'];
+  columnsToDisplay = ['id', 'material', 'quantity', 'unit', 'unitPrice', 'actions', 'materialcardmaterialannexe5s'];
   materialcardId: string;
 
   constructor(
     private materialcardService: MaterialcardService,
-    private route: ActivatedRoute,
+    private materialcardmaterialService: MaterialcardmaterialService, 
     private dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
-    this.materialcardId = this.route.snapshot.params['id'];
-    this.getMaterialcardMaterials();
+    this.materialcardId = this.materialcardIdFromParent as unknown as string;
+    this.getMaterialcardMaterials(this.materialcardId);
   }
 
-  getMaterialcardMaterials(): void {
-    this.materialcardService.getMaterialcardMaterials(this.materialcardId)
+  getMaterialcardMaterials(materialcardId: string): void {
+    this.materialcardService.getMaterialcardMaterialsByMaterialcard(materialcardId)
       .subscribe((data: Materialcardmaterial[]) => {
         this.materialcardMaterials = new MatTableDataSource(data);
         this.materialcardMaterials.sort = this.sort;
@@ -52,13 +49,11 @@ export class MaterialcardmaterialTableComponent implements OnInit {
   }
 
   deleteMaterialcardMaterial(materialcardMaterialId: string) {
-    // console.log("deleting materialcardMaterial");
-    // console.log(materialcardMaterialId);
-    this.materialcardService.deleteMaterialcardMaterial(this.materialcardId, materialcardMaterialId)
+    this.materialcardmaterialService.deleteMaterialCardMaterial(materialcardMaterialId)
       .subscribe({
         next: (data: string) => {
           console.log("deleted");
-          this.getMaterialcardMaterials();
+          this.getMaterialcardMaterials(this.materialcardId);
         },
         error: (err: any) => {
           console.log("error when deleting");
@@ -70,15 +65,16 @@ export class MaterialcardmaterialTableComponent implements OnInit {
   openCreateMaterialcardMaterialFormDialog() {
     const dialogRef = this.dialog.open(MaterialcardmaterialFormComponent, {
       data: {
-        materialcardMaterialFormData: null,
-        materialcardId: this.materialcardId,
+        materialcardMaterialIdFromTable: null,
+        materialcardMaterialFromTable: null,
+        materialcardFromTable: this.materialcardFromParent,
       }
     });
     dialogRef.afterClosed().subscribe({
       next: (val) => {
         // console.log("here is afterClosed");
         if (val) {
-          this.getMaterialcardMaterials();
+          this.getMaterialcardMaterials(this.materialcardId);
         }
       }
     });
@@ -86,18 +82,20 @@ export class MaterialcardmaterialTableComponent implements OnInit {
 
   openUpdateMaterialcardMaterial(
     materialcardMaterialId: string,
-    materialcardMaterialFormData: Materialcardmaterial,) {
+    materialcardMaterialFromTable: Materialcardmaterial,
+    ) {
+      materialcardMaterialFromTable.materialcard=this.materialcardFromParent;
     const dialogRef = this.dialog.open(MaterialcardmaterialFormComponent, {
       data: {
-        materialcardMaterialFormData: materialcardMaterialFormData,
-        materialcardId: this.materialcardId,
+        materialcardMaterialIdFromTable: materialcardMaterialId,
+        materialcardMaterialFromTable: materialcardMaterialFromTable,
       }
     });
     dialogRef.afterClosed().subscribe({
       next: (val) => {
         // console.log("here is afterClosed");
         if (val) {
-          this.getMaterialcardMaterials();
+          this.getMaterialcardMaterials(this.materialcardId);
         }
       }
     });

@@ -39,7 +39,7 @@ export class MaterialcardService {
   }
   
   // MaterialcardMaterials
-  getMaterialcardMaterials(materialCardId: string): Observable<Materialcardmaterial[]>{
+  getMaterialcardMaterialsByMaterialcard(materialCardId: string): Observable<Materialcardmaterial[]>{
     return this.httpClient.get<Materialcardmaterial[]>(`${this.materialcard_api_url}/${materialCardId}/materialcardmaterials`);
   }
 

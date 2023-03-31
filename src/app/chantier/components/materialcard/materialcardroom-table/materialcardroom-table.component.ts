@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute } from '@angular/router';
 import { Inventoryitem } from 'src/app/chantier/models/inventoryitem.model';
 import { Materialcard } from 'src/app/chantier/models/materialcard.model';
 import { InventoryitemService } from 'src/app/chantier/services/inventoryitem.service';
@@ -24,18 +23,19 @@ export class MaterialcardroomTableComponent implements OnInit {
   materialcardId: string;
   currentInventoryItem: Inventoryitem;
 
-  @Input() projectId: any = '';
-  @Input() materialcard: Materialcard;
+  @Input() projectIdFromParent: any = '';
+  @Input() materialcardFromParent: Materialcard;
 
   constructor(
     private materialcardService: MaterialcardService,
     private inventoryItemService: InventoryitemService,
-    private route: ActivatedRoute,
     private dialog: MatDialog,
-  ) { }
+  ) {
+
+  }
 
   ngOnInit(): void {
-    this.materialcardId = this.route.snapshot.params['id'];
+    this.materialcardId = this.materialcardFromParent.id as unknown as string;
     this.getInventoryItemsByMaterialcard();
   }
 
@@ -66,8 +66,8 @@ export class MaterialcardroomTableComponent implements OnInit {
     const dialogRef = this.dialog.open(InventoryitemFormComponent, {
       data: {
         inventoryItemDataFromTable: null,
-        materialcard: this.materialcard,
-        projectId: this.projectId,
+        materialcard: this.materialcardFromParent,
+        projectId: this.projectIdFromParent,
       }
     });
     dialogRef.afterClosed().subscribe({
@@ -84,12 +84,12 @@ export class MaterialcardroomTableComponent implements OnInit {
     inventoryItemId: string,
     inventoryItemDataFromTable: Inventoryitem,
   ) {
-    inventoryItemDataFromTable.materialcard = this.materialcard;
+    inventoryItemDataFromTable.materialcard = this.materialcardFromParent;
     const dialogRef = this.dialog.open(InventoryitemFormComponent, {
       data: {
         inventoryItemDataFromTable: inventoryItemDataFromTable,
-        materialcard: this.materialcard,
-        projectId: this.projectId,
+        materialcard: this.materialcardFromParent,
+        projectId: this.projectIdFromParent,
       }
     });
     dialogRef.afterClosed().subscribe({

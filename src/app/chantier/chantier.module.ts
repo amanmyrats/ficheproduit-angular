@@ -32,6 +32,8 @@ import { MaterialcardroomTableComponent } from './components/materialcard/materi
 import { InventoryitemFormComponent } from './components/shared/inventoryitem-form/inventoryitem-form.component';
 import { Inventoryitemannexe5TableComponent } from './components/materialcard/inventoryitemannexe5-table/inventoryitemannexe5-table.component';
 import { Inventoryitemannexe5FormComponent } from './components/materialcard/inventoryitemannexe5-form/inventoryitemannexe5-form.component';
+import { Materialcardmaterialannexe5TableComponent } from './components/materialcard/materialcardmaterialannexe5-table/materialcardmaterialannexe5-table.component';
+import { Materialcardmaterialannexe5FormComponent } from './components/materialcard/materialcardmaterialannexe5-form/materialcardmaterialannexe5-form.component';
 
 
 @NgModule({
@@ -55,6 +57,8 @@ import { Inventoryitemannexe5FormComponent } from './components/materialcard/inv
     InventoryitemFormComponent,
     Inventoryitemannexe5TableComponent,
     Inventoryitemannexe5FormComponent,
+    Materialcardmaterialannexe5TableComponent,
+    Materialcardmaterialannexe5FormComponent,
   ],
   imports: [
     CommonModule,

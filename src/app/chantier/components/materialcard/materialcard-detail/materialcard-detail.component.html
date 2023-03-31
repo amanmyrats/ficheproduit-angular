@@ -354,16 +354,23 @@
         </mat-card>
     </div>
     <div class="materialcard-details">
-
-        <app-materialcardmaterial-table class="materialcard-details-materials">
-        </app-materialcardmaterial-table>
-
+        <ng-container *ngIf="materialcard">
+    
+            <app-materialcardmaterial-table class="materialcard-details-materials" 
+                [projectIdFromParent]="materialcard.project?.id"
+                [materialcardIdFromParent]="materialcard.id"
+                [materialcardFromParent]="materialcard" 
+                >
+            </app-materialcardmaterial-table>
+        </ng-container>
+    
         <ng-container *ngIf="materialcard">
             <app-materialcardroom-table class="materialcard-details-rooms" 
-            [projectId]="materialcard.project?.id" 
-            [materialcard]="materialcard">
+                [projectIdFromParent]="materialcard.project?.id"
+                [materialcardFromParent]="materialcard"
+                >
             </app-materialcardroom-table>
         </ng-container>
-
+    
     </div>
 </div>
