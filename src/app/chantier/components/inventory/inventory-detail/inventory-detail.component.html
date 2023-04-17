@@ -1,0 +1,187 @@
+
+
+<mat-card >
+
+    <!-- width: calc(#{$a4-width}*0.96); -->
+    <!-- Header -->
+    <div class="horizontal-block-main header">
+        <div class="header-logo">
+            <img src="assets/img/bytk_logo_resized.png" alt="">
+        </div>
+        <div class="vertical-block header-title content content-center">
+            <div class="content content-center content-wrap">
+                {{ inventory ? inventory.project?.nameEn : "" }}
+            </div>
+            <div class="content content-center content-wrap">
+                {{ inventory ? inventory.project?.nameRu : "" }}
+            </div>
+            <div class="content content-center content-wrap">
+                ASHGABAT - TURKMENISTAN
+            </div>
+        </div>
+        <div class="vertical-block header-room-info">
+            <div class="horizontal-block room-info-codelevel border-secondary-bottom">
+                <div class="horizontal-block room-info-codelevel-code">
+                    <div class="vertical-block vertical-block-right label label-left">
+                        <div class="label-en">
+                            № local
+                        </div>
+                        <div class="label-ru">
+                            № помещения
+                        </div>
+                    </div>
+                    <div class="content content-center content-bold">
+                        {{inventory ? inventory.code : ""}}
+                    </div>
+                </div>
+                <div class="horizontal-block room-info-codelevel-level">
+                    <div class="vertical-block vertical-block-right label label-left">
+                        <div class="label-en">
+                            Niveau
+                        </div>
+                        <div class="label-ru">
+                            Этаж
+                        </div>
+                    </div>
+                    <div class="content content-center content-bold">
+                        {{inventory ? inventory.level : ""}}
+
+                    </div>
+                </div>
+            </div>
+            <div class="horizontal-block room-info-name">
+                <div class="vertical-block vertical-block-right label label-left">
+                    <div class="label-en">
+                        Désignation
+                    </div>
+                    <div class="label-ru">
+                        Наименование
+                    </div>
+                </div>
+                <div class="vertical-block">
+                    <div class="content content-en">
+                        {{inventory ? inventory.nameEn : ""}}
+                    </div>
+                    <div class="content content-ru">
+                        {{inventory ? inventory.nameRu : ""}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Plan -->
+    <div class="horizontal-block-main room-plan">
+        <img src="assets/img/room_plan.jpg" alt="">
+    </div>
+    <div class="vertical-block table-wrapper border-primary-left border-primary-right">
+        <!-- Format Table -->
+        <div *ngIf="!editMode" class="vertical-block-main inventory-items">
+            <app-inventoryformat1-table *ngIf="inventory"
+                [projectIdFromParent]="inventory.project?.id"
+                [inventoryFromParent]="inventory"
+                >
+            </app-inventoryformat1-table>
+        </div>
+        
+        <!-- Edit Table -->
+        <div *ngIf="editMode" class="vertical-block-main inventory-items">
+            <app-inventoryitem-table *ngIf="inventory"
+                [projectIdFromParent]="inventory.project?.id"
+                [inventoryFromParent]="inventory"
+                >
+            </app-inventoryitem-table>
+        </div>
+    </div>
+
+    <!-- Sign -->
+    <div class="horizontal-block-main signature">
+        <div class="vertical-block vertical-block-sign border-secondary-right">
+            <div class="signature-company-name label label-center label-wrap">
+                REPRESENTANT BOUYGUES <br> ПРЕДСТАВИТЕЛЬ ОТ КОМПАНИИ "БУИГ"
+            </div>
+            <div class="horizontal-block signature-name">
+                <div class="label label-left">
+                    Nom / Имя:
+                </div>
+                <div class="content content-center">
+                    B. PETILLON / Б. ПЕТИЙОН
+                </div>
+            </div>
+            <div class="horizontal-block signature-sign">
+                <div class="label label-left">
+                    Signature <br> Подпись:
+                </div>
+                <div class="content border-secondary-bottom">
+
+                </div>
+            </div>
+            <div class="horizontal-block signature-date">
+                <div class="label label-left">
+                    Date / Дата:
+                </div>
+                <div class="content content-center">
+                    ____ / ____ / 202 ___
+                </div>
+            </div>
+        </div>
+        <div class="vertical-block vertical-block-sign border-secondary-right">
+            <div class="signature-company-name label label-center label-wrap">
+                EXPLOITANT <br> ЭКСПЛУАТИРУЮЩАЯ СТОРОНА
+            </div>
+            <div class="horizontal-block signature-name">
+                <div class="label label-left">
+                    Nom / Имя:
+                </div>
+                <div class="content content-center">
+                    
+                </div>
+            </div>
+            <div class="horizontal-block signature-sign">
+                <div class="label label-left">
+                    Signature <br> Подпись:
+                </div>
+                <div class="content border-secondary-bottom">
+
+                </div>
+            </div>
+            <div class="horizontal-block signature-date">
+                <div class="label label-left">
+                    Date / Дата:
+                </div>
+                <div class="content content-center">
+                    ____ / ____ / 202 ___
+                </div>
+            </div>
+        </div>
+        <div class="vertical-block vertical-block-sign">
+            <div class="signature-company-name label label-center label-wrap">
+                MAITRE D'OUVRAGE <br> ЗАКАЗЧИК
+            </div>
+            <div class="horizontal-block signature-name">
+                <div class="label label-left">
+                    Nom / Имя:
+                </div>
+                <div class="content content-center">
+                    
+                </div>
+            </div>
+            <div class="horizontal-block signature-sign">
+                <div class="label label-left">
+                    Signature <br> Подпись:
+                </div>
+                <div class="content border-secondary-bottom">
+
+                </div>
+            </div>
+            <div class="horizontal-block signature-date">
+                <div class="label label-left">
+                    Date / Дата:
+                </div>
+                <div class="content content-center">
+                    ____ / ____ / 202 ___
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-card>

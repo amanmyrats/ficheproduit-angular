@@ -9,6 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import {MatChipsModule} from '@angular/material/chips';
 import { MaterialComponent } from './components/material/material.component';
 import { MaterialListComponent } from './components/material/material-list/material-list.component';
 import { MaterialFormComponent } from './components/material/material-form/material-form.component';
@@ -29,11 +30,18 @@ import { MaterialcardmaterialFormComponent } from './components/materialcard/mat
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MaterialcardroomTableComponent } from './components/materialcard/materialcardroom-table/materialcardroom-table.component';
-import { InventoryitemFormComponent } from './components/shared/inventoryitem-form/inventoryitem-form.component';
-import { Inventoryitemannexe5TableComponent } from './components/materialcard/inventoryitemannexe5-table/inventoryitemannexe5-table.component';
-import { Inventoryitemannexe5FormComponent } from './components/materialcard/inventoryitemannexe5-form/inventoryitemannexe5-form.component';
+import { MaterialcardroomFormComponent } from './components/materialcard/materialcardroom-form/materialcardroom-form.component';
+import { Inventoryitemannexe5TableComponent } from './components/shared/inventoryitemannexe5-table/inventoryitemannexe5-table.component';
+import { Inventoryitemannexe5FormComponent } from './components/shared/inventoryitemannexe5-form/inventoryitemannexe5-form.component';
 import { Materialcardmaterialannexe5TableComponent } from './components/materialcard/materialcardmaterialannexe5-table/materialcardmaterialannexe5-table.component';
 import { Materialcardmaterialannexe5FormComponent } from './components/materialcard/materialcardmaterialannexe5-form/materialcardmaterialannexe5-form.component';
+import { InventoryListComponent } from './components/inventory/inventory-list/inventory-list.component';
+import { InventoryComponent } from './components/inventory/inventory.component';
+import { InventoryDetailComponent } from './components/inventory/inventory-detail/inventory-detail.component';
+import { InventoryitemFormComponent } from './components/inventory/inventoryitem-form/inventoryitem-form.component';
+import { InventoryitemTableComponent } from './components/inventory/inventoryitem-table/inventoryitem-table.component';
+import { Inventoryformat1TableComponent } from './components/inventory/inventoryformat1-table/inventoryformat1-table.component';
+import { InventoryEditComponent } from './components/inventory/inventory-edit/inventory-edit.component';
 
 
 @NgModule({
@@ -54,11 +62,18 @@ import { Materialcardmaterialannexe5FormComponent } from './components/materialc
     MaterialcardmaterialTableComponent,
     MaterialcardmaterialFormComponent,
     MaterialcardroomTableComponent,
-    InventoryitemFormComponent,
+    MaterialcardroomFormComponent,
     Inventoryitemannexe5TableComponent,
     Inventoryitemannexe5FormComponent,
     Materialcardmaterialannexe5TableComponent,
     Materialcardmaterialannexe5FormComponent,
+    InventoryListComponent,
+    InventoryComponent,
+    InventoryDetailComponent,
+    InventoryitemFormComponent,
+    InventoryitemTableComponent,
+    Inventoryformat1TableComponent,
+    InventoryEditComponent,
   ],
   imports: [
     CommonModule,
@@ -75,6 +90,7 @@ import { Materialcardmaterialannexe5FormComponent } from './components/materialc
     MatPaginatorModule,
     MatSortModule,
     MatDialogModule,
+    MatChipsModule, 
   ],
   exports: [
     MaterialFormComponent,

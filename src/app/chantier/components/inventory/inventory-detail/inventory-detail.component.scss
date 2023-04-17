@@ -1,0 +1,201 @@
+@import 'src/styles/_variables';
+
+mat-card {
+    width: calc(#{$a4-width}*0.96);
+    // height: calc(#{$a4-height}*0.96);
+    height: auto;
+    margin: auto;
+    display: flex;
+    flex-direction: column;    
+    // border-bottom: 10px solid black;    
+
+    .horizontal-block {
+        display: flex;
+        flex-direction: row;
+        flex-grow:1;
+
+        &-main {
+            display: flex;
+            flex-direction: row;
+            flex-grow: 1 1 100%;
+            border: .5px solid black;
+            border-radius: 5px;
+        }
+    }
+
+    .vertical-block {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+
+    }
+
+    *.signature-row:nth-child(-n+2) {
+        flex-grow:1;            
+    }
+    *.signature-row:nth-child(n+3) {
+        flex-grow:2;            
+    }
+
+    .label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 500;
+        flex: 1 0 auto;
+        padding-left: 1px;
+
+        &-left {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-grow: 0;
+        }
+        
+        &-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        &-wrap {
+            word-wrap: break-word;
+        }
+
+        &-en {
+            font-weight: 600;
+        }
+
+        &-ru {
+            font-style: italic;
+        }
+    }
+
+    .content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        flex: 1 1 100%;            
+
+        &-left {
+            justify-content: flex-start;
+        }
+
+        &-bold {
+            font-weight: 600;
+        }
+
+        &-wrap {
+            word-wrap: break-word;
+        }
+
+        &-en {
+            font-weight: 600;
+        }
+
+        &-ru {
+            font-style: italic;
+        }
+    }
+
+    *.border-primary {
+        border-radius: 5px;
+
+        &-top {
+            border-top: .5px solid black;
+        }
+
+        &-right {
+            border-right: .5px solid black;
+        }
+
+        &-bottom {
+            border-bottom: .5px solid black;
+        }
+
+        &-left {
+            border-left: .5px solid black;
+        }
+    }
+
+    *.border-secondary {
+        border-radius: 5px;
+
+        &-top {
+            border-top: .5px solid rgb(229, 213, 213);
+        }
+
+        &-right {
+            border-right: .5px solid rgb(229, 213, 213);
+        }
+
+        &-bottom {
+            border-bottom: .5px solid rgb(229, 213, 213);
+        }
+
+        &-left {
+            border-left: .5px solid rgb(229, 213, 213);
+        }
+    }
+
+    // Blocks
+    // Blocks
+    // Blocks
+    .header {
+        min-height: 75px;
+
+        &-logo {
+            width: 160px;
+            flex: 0 0 auto;
+            // background-color: rgb(25, 91, 148);
+
+            img {
+                height: 75px;
+            }
+        }
+
+        &-title {
+            font-size: x-small;
+            flex: 1 0 35%;
+        }
+
+        &-room-info {
+            font-size: x-small;
+            flex: 2 0 40%;
+            // background-color: rgb(153, 180, 204);
+        }
+    }
+
+    .room-plan {
+        height: 200px;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            height: 100%;
+        }
+    }
+
+    .signature {
+        height: 130px;
+        font-size: x-small;
+        // background-color: beige;
+
+        .vertical-block-sign {
+            flex: 1 0 33%;
+        }
+
+        &-company-name {
+            word-wrap: normal;
+            height: 25px;
+            font-size: xx-small;
+            line-height: 12px;
+            // background-color: bisque;
+        }
+
+    }
+
+    
+}

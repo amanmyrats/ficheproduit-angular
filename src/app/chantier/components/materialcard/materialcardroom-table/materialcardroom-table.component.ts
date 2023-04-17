@@ -7,7 +7,7 @@ import { Inventoryitem } from 'src/app/chantier/models/inventoryitem.model';
 import { Materialcard } from 'src/app/chantier/models/materialcard.model';
 import { InventoryitemService } from 'src/app/chantier/services/inventoryitem.service';
 import { MaterialcardService } from 'src/app/chantier/services/materialcard.service';
-import { InventoryitemFormComponent } from '../../shared/inventoryitem-form/inventoryitem-form.component';
+import { MaterialcardroomFormComponent } from '../materialcardroom-form/materialcardroom-form.component';
 
 @Component({
   selector: 'app-materialcardroom-table',
@@ -63,7 +63,7 @@ export class MaterialcardroomTableComponent implements OnInit {
   }
 
   openCreateMaterialcardroomFormDialog() {
-    const dialogRef = this.dialog.open(InventoryitemFormComponent, {
+    const dialogRef = this.dialog.open(MaterialcardroomFormComponent, {
       data: {
         inventoryItemDataFromTable: null,
         materialcard: this.materialcardFromParent,
@@ -85,7 +85,7 @@ export class MaterialcardroomTableComponent implements OnInit {
     inventoryItemDataFromTable: Inventoryitem,
   ) {
     inventoryItemDataFromTable.materialcard = this.materialcardFromParent;
-    const dialogRef = this.dialog.open(InventoryitemFormComponent, {
+    const dialogRef = this.dialog.open(MaterialcardroomFormComponent, {
       data: {
         inventoryItemDataFromTable: inventoryItemDataFromTable,
         materialcard: this.materialcardFromParent,

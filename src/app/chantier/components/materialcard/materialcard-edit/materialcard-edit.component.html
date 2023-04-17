@@ -1,1 +1,595 @@
-<p>materialcard-edit works!</p>
+<div class="wrapper">
+    <form [formGroup]="materialCardForm" (ngSubmit)="onSubmit()">
+<mat-card>
+
+    <!-- Logo and Material Name -->
+    <div class="materialcard-header horizontal-block-main">
+        <div class="materialcard-header-logo">
+            <img src="assets/img/bytk_logo.png" alt="Material card image" class="mat-card-image">
+        </div>
+
+        <div class="vertical-block materialcard-header-title border-primary-left">
+            <div class="label label-center materialcard-header-title-name border-primary-bottom">
+                FICHE PRODUIT - КАРТОЧКА ИЗДЕЛИЯ
+            </div>
+            <div class="materialcard-header-title-names vertical-block">
+                <div class="materialcard-header-title-names-fr horizontal-block border-secondary-bottom">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Nom du produit:</mat-label>
+                        <input matInput formControlName="nameEn">
+                    </mat-form-field>
+                    <!-- <div class="label label-left">
+                        Nom du produit:
+                    </div>
+                    <div class="content">
+                        {{materialCard ? materialCard.nameEn : "" }}
+                    </div> -->
+                </div>
+                <div class="materialcard-header-title-names-ru horizontal-block">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Наименование изделия:</mat-label>
+                        <input matInput formControlName="nameRu">
+                    </mat-form-field>
+                    <!-- <div class="label label-left">
+                        Nom du produit:
+                    </div>
+                    <div class="content">
+                        {{  "" }}
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chantier -->
+    <div class="horizontal-block-main chantier">
+        <div class="vertical-block">
+            <div class="chantier-name horizontal-block border-secondary-bottom">
+                <div class="label label-left">
+                    Chantier:
+                </div>
+                <div class="content">
+                    {{ materialCard ? materialCard.project?.nameEn : "" }}
+                </div>
+            </div>
+            <div class="chantier-name horizontal-block">
+                <div class="label label-left">
+                    Стройка:
+                </div>
+                <div class="content">
+                    {{ materialCard ? materialCard.project?.nameRu : "" }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Supplier, Origin, Manufactured In -->
+    <div class="horizontal-block-main supplier">
+        <div class="vertical-block border-primary-right">
+            <div class="horizontal-block">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Fournisseur:</mat-label>
+                    <input matInput formControlName="supplierEn">
+                </mat-form-field>
+                <!-- <div class="label label-left border-secondary-bottom">
+                    Fournisseur:
+                </div>
+                <div class="content border-secondary-bottom">
+                    Knauf
+                </div> -->
+            </div>
+            <div class="horizontal-block">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Поставщик:</mat-label>
+                    <input matInput formControlName="supplierRu">
+                </mat-form-field>
+                <!-- <div class="label label-left border-secondary-bottom">
+                    Поставщик:
+                </div>
+                <div class="content border-secondary-bottom">
+                    Knauf
+                </div> -->
+            </div>
+        </div>
+        <div class="vertical-block border-primary-right">
+            
+            <mat-form-field appearance="fill" class="material" [formGroup]="originForm">
+                <mat-label>Origine:</mat-label>
+                <mat-select formControlName="id">
+                    <mat-option value="">----</mat-option>
+                    <mat-option [value]="origin.id" *ngFor="let origin of countries">{{origin.nameEn}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            
+            <!-- <div class="horizontal-block">
+                <div class="label label-left border-secondary-bottom">
+                    Origine:
+                </div>
+                <div class="content border-secondary-bottom">
+                    France
+                </div>
+
+            </div>
+            <div class="horizontal-block">
+                <div class="label label-left border-secondary-bottom">
+                    Происх.:
+                </div>
+                <div class="content border-secondary-bottom">
+                    France
+                </div>
+            </div> -->
+            
+        </div>
+        <div class="vertical-block">
+            <mat-form-field appearance="fill" class="material" [formGroup]="manufacturedInForm">
+                <mat-label>Manufactured In:</mat-label>
+                <mat-select formControlName="id">
+                    <mat-option [value]="manufacturedIn.id" *ngFor="let manufacturedIn of countries">{{manufacturedIn.nameEn}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <!-- <div class="horizontal-block">
+                <div class="label label-left border-secondary-bottom">
+                    Lieu de fabr. :
+                </div>
+                <div class="content border-secondary-bottom">
+                    France
+                </div>
+            </div>
+            <div class="horizontal-block">
+                <div class="label label-left border-secondary-bottom">
+                    Место произ. :
+                </div>
+                <div class="content border-secondary-bottom">
+                    France
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+    <!-- Location -->
+    <div class="horizontal-block-main location">
+        <div class="vertical-block">
+            <div class="horizontal-block border-secondary-bottom">
+
+                <mat-form-field class="example-full-width">
+                    <mat-label>Localisation:</mat-label>
+                    <input matInput formControlName="locationEn">
+                </mat-form-field>
+
+                <!-- <div class="label label-left">
+                    Localisation:
+                </div>
+                <div class="content">
+                    LOCAUX TECHNIQUES ET SANITAIRES
+                </div> -->
+
+            </div>
+            <div class="horizontal-block">
+
+                <mat-form-field class="example-full-width">
+                    <mat-label>Размещение:</mat-label>
+                    <input matInput formControlName="locationRu">
+                </mat-form-field>
+
+                <!-- <div class="label label-left">
+                    Размещение:
+                </div>
+                <div class="content">
+                    LOCAUX TECHNIQUES ET SANITAIRES
+                </div> -->
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Description -->
+    <div class="horizontal-block-main description">
+        <div class="vertical-block border-primary-right">
+
+            <mat-form-field class="example-full-width">
+                <mat-label>DESCRIPTION DU PRODUIT</mat-label>
+                <textarea matInput
+                cdkTextareaAutosize
+                cdkAutosizeMinRows="8" 
+                formControlName="descEn"
+                >
+            </textarea>
+            </mat-form-field>
+
+
+            <!-- <div class="label label-center border-secondary-bottom">
+                DESCRIPTION DU PRODUIT
+            </div>
+            <div class="content">
+                {{ materialCard ? materialCard.descFr : "" }}
+            </div> -->
+
+        </div>
+        <div class="vertical-block">
+
+            <mat-form-field class="example-full-width">
+                <mat-label>ОПИСАНИЕ ИЗДЕЛИЯ</mat-label>
+                <textarea matInput 
+                cdkTextareaAutosize
+                cdkAutosizeMinRows="8"
+                formControlName="descRu"
+                ></textarea>
+            </mat-form-field>
+
+            <!-- <div class="label label-center border-secondary-bottom">
+                ОПИСАНИЕ ИЗДЕЛИЯ
+            </div>
+            <div class="content">
+                {{ materialCard ? materialCard.descRu : "" }}
+            </div> -->
+
+        </div>
+    </div>
+
+    <!-- Protocal, Observation, Preparer and Image -->
+    <div class="horizontal-block-main protocol">
+        <div class="vertical-block protocol-protocol">
+            <div class="vertical-block border-primary-bottom">
+
+                <mat-form-field class="example-full-width">
+                    <mat-label>Procès verbaux:</mat-label>
+                    <textarea matInput 
+                    cdkTextareaAutosize
+                    cdkAutosizeMinRows="4"
+                    formControlName="protocolEn"
+                    ></textarea>
+                </mat-form-field>
+
+                <!-- <div class="label label-left">
+                    Procès verbaux:
+                </div>
+                <div class="content border-secondary-bottom">
+
+                </div> -->
+                
+                <mat-form-field class="example-full-width">
+                    <mat-label>Протоколы:</mat-label>
+                    <textarea matInput 
+                    cdkTextareaAutosize
+                    cdkAutosizeMinRows="4"
+                    formControlName="locationRu"
+                    ></textarea>
+                </mat-form-field>
+
+                <!-- <div class="label label-left">
+                    Протоколы:
+                </div>
+                <div class="content">
+
+                </div> -->
+            </div>
+            <div class="vertical-block border-primary-bottom">
+
+                <mat-form-field class="example-full-width">
+                    <mat-label>Observations et avis de l'organisme de contrôle:</mat-label>
+                    <textarea matInput 
+                    cdkTextareaAutosize
+                    cdkAutosizeMinRows="4"
+                    formControlName="observationEn"
+                    ></textarea>
+                </mat-form-field>
+
+                <!-- <div class="label label-left">
+                    Observations et avis de l'organisme de contrôle:
+                </div>
+                <div class="content border-secondary-bottom">
+
+                </div> -->
+
+                <mat-form-field class="example-full-width">
+                    <mat-label>Замечания И Заключение Тех. Надзора:</mat-label>
+                    <textarea matInput 
+                    cdkTextareaAutosize
+                    cdkAutosizeMinRows="4"
+                    formControlName="observationRu"
+                    ></textarea>
+                </mat-form-field>
+
+                <!-- <div class="label label-left">
+                    Замечания И Заключение Тех. Надзора:
+                </div>
+                <div class="content">
+
+                </div> -->
+            </div>
+            <div class="vertical-block border-primary-bottom emetteur-block">
+                <div class="horizontal-block">
+
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Emetteur/
+                            Составитель:</mat-label>
+                        <input matInput formControlName="signContractor1">
+                    </mat-form-field>
+
+
+                    <!-- <div class="label label-left">
+                        Emetteur/
+                        Составитель:
+                    </div>
+                    <div class="content content-left">
+                        Someone Someonow
+                    </div> -->
+                </div>
+                <div class="horizontal-block">
+                    <div class="label label-left">
+                        Le/Дата:
+                    </div>
+                    <div class="content content-left">
+                        ____ / ____ / 202 ___
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="vertical-block protocol-image border-primary-left">
+            <img src="assets/img/achat.jpg" alt="Material Card Image">
+        </div>
+    </div>
+
+    <!-- Signatures -->
+    <div class="horizontal-block-main signature">
+        <!-- <div class="vertical-block vertical-block-sign">
+            <div class="label-center signature-company signature-row">
+                -
+            </div>
+            <div class="label-center signature-position signature-row">
+                -
+            </div>
+            <div class="label-left signature-left-labels signature-row">
+                Le/Дата:
+            </div>
+            <div class="label-left signature-left-labels signature-row">
+                Nom/Имя:
+            </div>
+            <div class="label-left signature-left-labels signature-row">
+                Visas/Под.:
+            </div>
+        </div> -->
+        <div class="vertical-block vertical-block-sign">
+            <div class="label-center label-one-line signature-company signature-row">
+                Entrepreneur/Подрядчик
+            </div>
+            <!-- <div class="label-center label-one-line signature-position signature-row">
+                Directeur Projet/Директор Проекта
+            </div> -->
+            <div class="label-center signature-row">
+                ____ / ____ / 202 ___
+            </div>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Directeur Projet/Директор Проекта:</mat-label>
+                <input matInput formControlName="signContractor2">
+            </mat-form-field>
+
+            <!-- <div class="label-center signature-row">
+                Hadrien Hue
+            </div> -->
+
+            <div class="label-center signature-row">
+                ______________
+            </div>
+        </div>
+        <div class="vertical-block vertical-block-sign">
+            <div class="label-center label-one-line signature-company signature-row">
+                Organisme de contrôle/Тех. надзор
+            </div>
+            <!-- <div class="label-center label-one-line signature-position signature-row">
+                Client / Заказчик
+            </div> -->
+            <div class="label-center signature-row">
+                ____ / ____ / 202 ___
+            </div>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Client / Заказчик:</mat-label>
+                <input matInput formControlName="signTehnadzor">
+            </mat-form-field>
+
+
+            <!-- <div class="label-center signature-row">
+                Arslan Arslanow
+            </div> -->
+
+            <div class="label-center signature-row">
+                ______________
+            </div>
+        </div>
+        <div class="vertical-block vertical-block-sign">
+            <div class="label-center label-one-line signature-company signature-row">
+                Maitre d'ouvrage/Предст. заказчика
+            </div>
+            <!-- <div class="label-center label-one-line signature-position signature-row">
+                Client / Заказчик
+            </div> -->
+            <div class="label-center signature-row">
+                ____ / ____ / 202 ___
+            </div>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Client / Заказчик:</mat-label>
+                <input matInput formControlName="signClient">
+            </mat-form-field>
+
+            <!-- <div class="label-center signature-row">
+                Begli Begliyew
+            </div> -->
+
+            <div class="label-center signature-row">
+                ______________
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="horizontal-block-main materialcard-footer">
+        <div class="vertical-block border-primary-right">
+            <div class="label label-center label-wrap border-secondary-bottom">
+                Affaire/Проект
+            </div>
+            <div class="content content-bold">
+                CCI
+            </div>
+        </div>
+        <div class="vertical-block border-primary-right">
+
+            <mat-form-field appearance="fill" class="material" [formGroup]="phaseForm">
+                <mat-label>Phase/Зтап:</mat-label>
+                <mat-select formControlName="id">
+                    <mat-option [value]="phase.id" *ngFor="let phase of phases">{{phase.code}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <!-- <div class="label label-center label-wrap border-secondary-bottom">
+                Phase/Зтап
+            </div>
+            <div class="content content-bold">
+                CCI
+            </div> -->
+
+        </div>
+        <div class="vertical-block border-primary-right">
+
+            <mat-form-field appearance="fill" class="material" [formGroup]="lotForm">
+                <mat-label>Lot/Pаздел:</mat-label>
+                <mat-select formControlName="id">
+                    <mat-option [value]="lot.id" *ngFor="let lot of lots">{{lot.number}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <!-- <div class="label label-center label-wrap border-secondary-bottom">
+                Lot/Pаздел
+            </div>
+            <div class="content content-bold">
+                CCI
+            </div> -->
+
+        </div>
+        <div class="vertical-block border-primary-right">
+
+            <mat-form-field appearance="fill" class="material" [formGroup]="fpTypeForm">
+                <mat-label>Type/Тип:</mat-label>
+                <mat-select formControlName="id">
+                    <mat-option [value]="fpType.id" *ngFor="let fpType of fpTypes">{{fpType.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <!-- <div class="label label-center label-wrap border-secondary-bottom">
+                Type/Тип
+            </div>
+            <div class="content content-bold">
+                CCI
+            </div> -->
+
+        </div>
+        <div class="vertical-block border-primary-right">
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Zone/Зона:</mat-label>
+                <input matInput formControlName="zone">
+            </mat-form-field>
+
+            <!-- <div class="label label-center label-wrap border-secondary-bottom">
+                Zone/Зона
+            </div>
+            <div class="content content-bold">
+                CCI
+            </div> -->
+
+        </div>
+        <div class="vertical-block border-primary-right">
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Niveau/Зтаж:</mat-label>
+                <input matInput formControlName="level">    
+            </mat-form-field>
+
+            <!-- <div class="label label-center label-wrap border-secondary-bottom">
+                Niveau/Зтаж
+            </div>
+            <div class="content content-bold">
+                CCI
+            </div> -->
+
+        </div>
+        <div class="vertical-block border-primary-right">
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Numéro/Номеp:</mat-label>
+                <input matInput formControlName="number">
+            </mat-form-field>
+
+            <!-- <div class="label label-center label-wrap border-secondary-bottom">
+                Numéro/Номеp
+            </div>
+            <div class="content content-bold">
+                00010
+            </div> -->
+
+        </div>
+        <div class="vertical-block">
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Indice/Индекс:</mat-label>
+                <input matInput formControlName="index">
+            </mat-form-field>
+
+            <!-- <div class="label label-center label-wrap border-secondary-bottom">
+                Indice/Индекс
+            </div>
+            <div class="content content-bold">
+                A
+            </div> -->
+
+        </div>
+    </div>
+
+    <!-- Extra info -->
+    <div class="horizontal-block-main extra-info">
+
+        <mat-form-field appearance="fill" class="material" [formGroup]="departmentForm">
+            <mat-label>Department:</mat-label>
+            <mat-select formControlName="id">
+                <mat-option [value]="department.id" *ngFor="let department of departments">{{department.code}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="material" [formGroup]="tradeForm">
+            <mat-label>Trade:</mat-label>
+            <mat-select formControlName="id">
+                <mat-option [value]="trade.id" *ngFor="let trade of trades">{{trade.nameEn}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Quantity:</mat-label>
+            <input matInput formControlName="quantity">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="material" [formGroup]="unitForm">
+            <mat-label>Unit:</mat-label>
+            <mat-select formControlName="id">
+                <mat-option [value]="unit.id" *ngFor="let unit of units">{{unit.code}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Unit Price:</mat-label>
+            <input matInput formControlName="unitPrice">
+        </mat-form-field>
+    </div>
+    <!-- Button -->
+
+    <mat-card-actions mat-dialog-actions>
+        <button mat-raised-button color="primary" type="submit">
+            Save Changes
+        </button>
+    </mat-card-actions>
+
+</mat-card>
+</form>
+</div>

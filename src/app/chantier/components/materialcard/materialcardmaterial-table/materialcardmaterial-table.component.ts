@@ -25,6 +25,7 @@ export class MaterialcardmaterialTableComponent implements OnInit {
 
 
   materialcardMaterials!: MatTableDataSource<Materialcardmaterial>;
+  materialcardMaterialsArray: Materialcardmaterial[];
   columnsToDisplay = ['id', 'material', 'quantity', 'unit', 'unitPrice', 'actions', 'materialcardmaterialannexe5s'];
   materialcardId: string;
 
@@ -42,7 +43,9 @@ export class MaterialcardmaterialTableComponent implements OnInit {
   getMaterialcardMaterials(materialcardId: string): void {
     this.materialcardService.getMaterialcardMaterialsByMaterialcard(materialcardId)
       .subscribe((data: Materialcardmaterial[]) => {
-        this.materialcardMaterials = new MatTableDataSource(data);
+        console.log("materialcardMaterials fetched successfully")
+        this.materialcardMaterialsArray = data;
+        this.materialcardMaterials = new MatTableDataSource(this.materialcardMaterialsArray);
         this.materialcardMaterials.sort = this.sort;
         this.materialcardMaterials.paginator = this.paginator;
       });
@@ -53,7 +56,9 @@ export class MaterialcardmaterialTableComponent implements OnInit {
       .subscribe({
         next: (data: string) => {
           console.log("deleted");
-          this.getMaterialcardMaterials(this.materialcardId);
+          // this.getMaterialcardMaterials(this.materialcardId);
+          const newData = this.materialcardMaterials.data.filter(materialcardMaterial => materialcardMaterial.id as unknown as string !== materialcardMaterialId);
+          this.materialcardMaterials.data = newData;
         },
         error: (err: any) => {
           console.log("error when deleting");
@@ -71,14 +76,26 @@ export class MaterialcardmaterialTableComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe({
-      next: (val) => {
+      next: (newMaterialCardMaterial) => {
         // console.log("here is afterClosed");
-        if (val) {
-          this.getMaterialcardMaterials(this.materialcardId);
+        // console.log(newMaterialCardMaterial);
+        if (newMaterialCardMaterial) {
+          console.log("From create form");
+          console.log(newMaterialCardMaterial);
+          // this.getMaterialcardMaterials(this.materialcardId);
+          const newData = this.materialcardMaterials.data.slice();
+          newData.push(newMaterialCardMaterial);
+          this.materialcardMaterials.data = newData;
         }
       }
     });
   }
+
+  // onMaterialCardMaterialCreated(newMaterialCardMaterial: Materialcardmaterial): void {
+  //   const newData = this.materialcardMaterials.data.slice();
+  //   newData.push(newMaterialCardMaterial);
+  //   this.materialcardMaterials.data = newData;
+  // }
 
   openUpdateMaterialcardMaterial(
     materialcardMaterialId: string,

@@ -9,11 +9,11 @@ import { ProjectService } from 'src/app/shared/services/project.service';
 import { UnitService } from 'src/app/shared/services/unit.service';
 
 @Component({
-  selector: 'app-inventoryitem-form',
-  templateUrl: './inventoryitem-form.component.html',
-  styleUrls: ['./inventoryitem-form.component.scss']
+  selector: 'app-materialcardroom-form',
+  templateUrl: './materialcardroom-form.component.html',
+  styleUrls: ['./materialcardroom-form.component.scss']
 })
-export class InventoryitemFormComponent {
+export class MaterialcardroomFormComponent {
   
   inventoryItemForm: FormGroup;
   materialCardForm: FormGroup;
@@ -27,7 +27,7 @@ export class InventoryitemFormComponent {
     private projectService: ProjectService,
     private inventoryItemService: InventoryitemService,
     private unitService: UnitService,
-    @Optional() private dialogRef: MatDialogRef<InventoryitemFormComponent>,
+    @Optional() private dialogRef: MatDialogRef<MaterialcardroomFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
 

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment as env } from 'src/environments/environment';
 import { Inventoryitem } from '../models/inventoryitem.model';
 import { Inventoryitemannexe5 } from '../models/inventoryitemannexe5.model';
+import { Annexe5 } from 'src/app/qs/models/annexe5.model';
 
 @Injectable({
   providedIn: 'root'
@@ -35,4 +36,8 @@ export class InventoryitemService {
     return this.httpClient.get<Inventoryitemannexe5[]>(`${env.apiUrl}/chantier/inventoryitems/${inventoryItemId}/inventoryitemannexe5s`);
   }
 
+  // Annexe5s
+  getAnnexe5sByInventoryItem(inventoryItemId: string): Observable<Annexe5[]> {
+    return this.httpClient.get<Annexe5[]>(`${env.apiUrl}/chantier/inventoryitems/${inventoryItemId}/annexe5s`);
+  }
 }

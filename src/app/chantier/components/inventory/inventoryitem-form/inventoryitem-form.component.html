@@ -1,16 +1,16 @@
-<form [formGroup]="inventoryItemAnnexe5Form" (ngSubmit)="onSubmit()">
+<form [formGroup]="inventoryItemForm" (ngSubmit)="onSubmit()">
     <mat-card>
         <mat-card-header>
-            Which Annexe5 this inventory item belongs to?
+            Which room this fiche produit belogs to?
         </mat-card-header>
 
         <mat-card-content>
 
-            <mat-form-field appearance="outline" class="name" [formGroup]="annexe5Form">
-                <mat-label>Annexe-5</mat-label>
+            <mat-form-field appearance="outline" class="name" [formGroup]="materialCardForm">
+                <mat-label>Fiche Produit</mat-label>
                 <mat-select formControlName="id">
-                    <mat-option [value]="annexe5.id" *ngFor="let annexe5 of annexe5s">{{annexe5.code}} -
-                        {{annexe5.nameEn}}</mat-option>
+                    <mat-option [value]="materialCard.id" *ngFor="let materialCard of materialCards">
+                        {{materialCard.number}} - {{materialCard.nameEn}}</mat-option>
                 </mat-select>
             </mat-form-field>
 
@@ -33,7 +33,7 @@
                 Cancel
             </button>
             <button mat-raised-button color="primary" type="submit">
-                {{ data.inventoryItemAnnexe5DataFromTable ? 'Update' : 'Add'}}
+                {{ data.inventoryItemDataFromTable ? 'Update' : 'Add'}}
             </button>
         </mat-card-actions>
 

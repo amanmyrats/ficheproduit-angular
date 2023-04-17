@@ -2,6 +2,7 @@ import { Component, Inject, Optional } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Materialcardmaterialannexe5 } from 'src/app/chantier/models/materialcardmaterialannexe5.model';
+import { MaterialcardmaterialService } from 'src/app/chantier/services/materialcardmaterial.service';
 import { Materialcardmaterialannexe5Service } from 'src/app/chantier/services/materialcardmaterialannexe5.service';
 import { Annexe5 } from 'src/app/qs/models/annexe5.model';
 import { Unit } from 'src/app/shared/models/unit.model';
@@ -20,11 +21,13 @@ export class Materialcardmaterialannexe5FormComponent {
   annexe5Form: FormGroup;
   unitForm: FormGroup;
   units: Unit[];
-  annexe5s: Annexe5[];
+  projectAnnexe5s: Annexe5[];
+  materialCardMaterialAnnexe5s: Annexe5[];
 
   constructor(
     private fb: FormBuilder,
     private projectService: ProjectService, 
+    private materialCardMaterialService: MaterialcardmaterialService, 
     private materialCardMaterialAnnexe5Service: Materialcardmaterialannexe5Service,
     private unitService: UnitService,
     @Optional() private dialogRef: MatDialogRef<Materialcardmaterialannexe5FormComponent>,
@@ -48,11 +51,13 @@ export class Materialcardmaterialannexe5FormComponent {
     // Get Units
     this.getUnits();
 
-    // Get Materials
-    this.getAnnexe5s(this.data.projectIdFromTable);
+    // Get Project Annexe5s
+    this.getProjectAnnexe5s(this.data.projectIdFromTable);
   }
 
   ngOnInit(): void {
+    // Get MaterialCardMaterial Annexe5s
+    this.getMaterialCardMaterialAnnexe5s(this.data.materialCardMaterialFromTable.id);
 
     // UPDATE
     if (this.data.materialCardMaterialAnnexe5FromTable) {
@@ -122,14 +127,39 @@ export class Materialcardmaterialannexe5FormComponent {
     });
   }
 
-  getAnnexe5s(projectId: string): void {
+  getProjectAnnexe5s(projectId: string): void {
     this.projectService.getProjectAnnexe5s(projectId).subscribe({
-      next: (annexe5s: Annexe5[]) => {
-        this.annexe5s = annexe5s;
+      next: (projectAnnexe5s: Annexe5[]) => {
+        this.projectAnnexe5s = projectAnnexe5s;
       },
       error: (err: any) => {
         console.log(err);
       }
     });
   }
+
+  getMaterialCardMaterialAnnexe5s(materialCardMaterialId: string): void {
+    this.materialCardMaterialService.getAnnexe5sByMaterialCardMaterial(materialCardMaterialId).subscribe({
+      next: (materialCardMaterialAnnexe5s: Annexe5[]) => {
+        this.materialCardMaterialAnnexe5s = materialCardMaterialAnnexe5s;
+      },
+      error: (err: any) => {
+        console.log(err);
+      }
+    });
+  }
+
+  removeDuplicates(projectAnnexe5s: Annexe5[], materialCardMaterialAnnexe5s: Annexe5[]): Annexe5[] {
+    const ids = new Set(materialCardMaterialAnnexe5s.map(item => item.id));
+    return projectAnnexe5s.filter(item => !ids.has(item.id));
+  }
+  
+  shuffleAnnexe5s(): void {
+    // console.log("before");
+    // console.log(this.materialCardAnnexe5s);
+    this.projectAnnexe5s = this.removeDuplicates(this.projectAnnexe5s, this.materialCardMaterialAnnexe5s);
+    // console.log("after");
+    // console.log(this.materialCardAnnexe5s);
+  }
+
 }

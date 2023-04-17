@@ -1,0 +1,233 @@
+
+<!-- <mat-card> -->
+    <!-- <mat-card-header>
+        <button mat-fab extended color="primary" (click)="openCreateInventoryItemFormDialog()">
+            <mat-icon>add</mat-icon>
+            Assign New Fiche Produit
+          </button>
+    </mat-card-header> -->
+    <!-- <mat-card-content> -->
+        <!-- <mat-form-field>
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Search" #input>
+        </mat-form-field> -->
+        <table mat-table [dataSource]="inventoryItems" class="mat-elevation-z8">
+        
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef class="center row-id"> 
+                    <div class="vertical-block">
+                        ID 
+                    </div>
+                </th>
+                <td mat-cell *matCellDef="let inventoryItem">
+                    <div class="vertical-block">
+                        {{inventoryItem.id}} 
+                    </div> 
+                </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="materialcard">
+                <th mat-header-cell *matHeaderCellDef class="row-fiche-produit">
+                    <div class="vertical-block">
+                        <div class="header header-en">
+                            Description
+                        </div>
+                        <div class="header header-ru">
+                            Описание 
+                        </div>
+                    </div> 
+                </th>
+                <td mat-cell *matCellDef="let inventoryItem"> 
+                    <div class="vertical-block">
+                        <div class="content content-left content-en">
+                            {{inventoryItem.materialcard?.nameEn}}
+                        </div>
+                        <div class="content content-left content-ru">
+                            {{inventoryItem.materialcard?.nameRu}}
+                        </div> 
+                    </div>
+                </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="annexe5s">
+                <th mat-header-cell *matHeaderCellDef class="center row-annexe5"> 
+                    <div class="vertical-block">
+                        <div class="header header-en">
+                            Annexe5 
+                        </div>
+                        <div class="header header-ru">
+                            Прил. 5 
+                        </div>
+                    </div>
+                </th>
+                <td mat-cell *matCellDef="let inventoryItem" class="center"> 
+                    <div class="vertical-block">
+                        <ng-container *ngFor="let inventoryitemannexe5s of inventoryItem.inventoryitemannexe5s" >
+                            <div class="content">
+                                {{inventoryitemannexe5s.annexe5.code}}
+                            </div>
+                        </ng-container>
+                    </div>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="factures">
+                <th mat-header-cell *matHeaderCellDef class="center row-facture"> 
+                    <div class="vertical-block">
+                        <div class="header header-en">
+                            Facture 
+                        </div>
+                        <div class="header header-ru">
+                            Фактура № 
+                        </div>
+                    </div>
+                </th>
+                <td mat-cell *matCellDef="let inventoryItem" class="center"> 
+                    <div class="vertical-block">
+                        <div class="content">
+                            PRA-TK-0011
+                        </div>
+                        <div class="content">
+                            PRA-TK-0021
+                        </div>
+                    </div>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="quantity">
+                <th mat-header-cell *matHeaderCellDef class="center row-quantity"> 
+                    <div class="vertical-block">
+                        <div class="header header-en">
+                            Quantity 
+                        </div>
+                        <div class="header header-ru">
+                            Количество 
+                        </div>
+                    </div>
+                </th>
+                <td mat-cell *matCellDef="let inventoryItem" class="center"> 
+                    <div class="vertical-block">
+                        <div class="content">
+                            {{inventoryItem.quantity}} 
+                        </div>
+                    </div>
+                </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="unit">
+                <th mat-header-cell *matHeaderCellDef class="center row-unit"> 
+                    <div class="vertical-block">
+                        <div class="header header-en">
+                            Unit 
+                        </div>
+                        <div class="header header-ru">
+                            Ед. изм.
+                        </div>
+                    </div>
+                </th>
+                <td mat-cell *matCellDef="let inventoryItem" class="center"> 
+                    <div class="vertical-block">
+                        <div class="content content-en">
+                            {{inventoryItem.materialcard.unit?.code}} 
+                        </div>
+                        <div class="content content-ru">
+                            {{inventoryItem.materialcard.unit?.nameRu}}
+                        </div>
+                    </div>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="image">
+                <th mat-header-cell *matHeaderCellDef class="center row-image"> 
+                    <div class="vertical-block">
+                        <div class="header header-en">
+                            Image 
+                        </div>
+                        <div class="header header-ru">
+                            Изображение 
+                        </div>
+                    </div>
+                </th>
+                <td mat-cell *matCellDef="let inventoryItem"> 
+                    <div class="vertical-block vertical-block-image">
+                        <img src="http://localhost:8080/materialcards/{{inventoryItem.materialcard.image}}" alt="">
+                    </div>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="unitPrice">
+                <th mat-header-cell *matHeaderCellDef class="center row-unit-price"> 
+                    <div class="vertical-block">
+                        <div class="header header-en">
+                            P.U. USD
+                        </div>
+                        <div class="header header-ru">
+                            Ед. цена в Долларах
+                        </div>
+                    </div>
+                </th>
+                <td mat-cell *matCellDef="let inventoryItem" class="center">
+                    <div class="vertical-block content">
+                        {{inventoryItem.unitPrice}} 
+                        12345
+                    </div> 
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="totalPrice">
+                <th mat-header-cell *matHeaderCellDef class="center row-total-price"> 
+                    <div class="vertical-block">
+                        <div class="header header-en">
+                            Total USD
+                        </div>
+                        <div class="header header-ru">
+                            Итого в Долларах
+                        </div>
+                    </div>
+                </th>
+                <td mat-cell *matCellDef="let inventoryItem" class="center"> 
+                    <div class="vertical-block content">
+                        {{inventoryItem.totalPrice}} 
+                        123456
+                    </div>
+                </td>
+            </ng-container>
+        
+            <!-- <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef> </th>
+                <td mat-cell *matCellDef="let inventoryItem" class="center"> 
+                    <button mat-icon-button color="primary" (click)="openUpdateInventoryItemFormDialog(inventoryItem.id, inventoryItem)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button color="warn" (click)="deleteInventoryItem(inventoryItem.id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </ng-container> -->
+
+            <!-- <ng-container matColumnDef="inventoryitemannexe5s">
+                <th mat-header-cell *matHeaderCellDef> Annexe5s </th>
+                <td mat-cell *matCellDef="let inventoryItem"> 
+                    <app-inventoryitemannexe5-table 
+                    [inventoryItemFromParent]="inventoryItem" 
+                    [projectIdFromParent]="projectIdFromParent"
+                    >
+                        
+                    </app-inventoryitemannexe5-table>
+                    
+                </td>
+            </ng-container> -->
+        
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+            <tr mat-row *matRowDef="let inventoryItem; columns: columnsToDisplay"></tr>
+            <!-- <tr mat-footer-row *matFooterRowDef="columnsToDisplay; sticky: true"></tr> -->
+
+            <!-- Row shown when there is no matching data. -->
+            <!-- <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+            </tr> -->
+
+        </table>
+        <!-- <mat-paginator [pageSizeOptions]="[25, 100]" aria-label="Select page"></mat-paginator> -->
+    <!-- </mat-card-content> -->
+<!-- </mat-card> -->

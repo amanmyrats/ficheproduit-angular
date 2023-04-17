@@ -1,0 +1,94 @@
+mat-card {
+    
+    // background-color: antiquewhite;
+    padding: 0;
+
+    &-header {
+
+        display: flex;
+        justify-content: center;
+        
+    }
+
+    &-content {
+        padding: 0;
+        // background-color: black;
+    }
+}
+
+table {
+
+    th {
+        font-weight: 800;
+        padding: 5px;
+    }
+
+    .row-fiche-produit {
+        min-width: 200px;
+        max-width: 300px;
+    }
+
+    .row-annexe5 {
+        min-width: 60px;
+        max-width: 90px;
+    }
+
+    .row-facture {
+        min-width: 60px;
+        max-width: 90px;
+    }
+
+    .row-quantity {
+        min-width: 60px;
+        max-width: 70px;
+        // background-color: antiquewhite;
+        
+    }
+
+    .row-unit {
+        min-width: 40px;
+        max-width: 50px;
+    }
+
+    .row-image {
+        min-width: 170px;
+        max-width: 200px;
+    }
+
+
+    td {
+        
+        padding-left: 2px;
+    }
+
+
+}
+
+.french {
+    font-weight: 599;
+}
+
+.center {
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    text-align: center;
+}
+
+.image-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+    flex-grow: 0 0 auto;  
+    min-width: 170px;
+    max-width: 200px;   
+
+    padding: 1px;
+    
+    img {
+        width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+}
+

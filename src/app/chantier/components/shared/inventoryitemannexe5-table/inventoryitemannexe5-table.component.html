@@ -1,12 +1,9 @@
-<mat-card>
+
+<!--
     <mat-card-header>
         
     </mat-card-header>
     <mat-card-content>
-        <!-- <mat-form-field>
-            <mat-label>Filter</mat-label>
-            <input matInput (keyup)="applyFilter($event)" placeholder="Search" #input>
-        </mat-form-field> -->
         <table mat-table [dataSource]="inventoryItemAnnexe5s" matSort>
         
             <ng-container matColumnDef="id">
@@ -15,7 +12,7 @@
             </ng-container>
             
                 <ng-container matColumnDef="annexe5">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Annexe5 </th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
                     <td mat-cell *matCellDef="let inventoryItemAnnexe5"> {{inventoryItemAnnexe5.annexe5?.code}} </td>
                 </ng-container>
         
@@ -33,7 +30,6 @@
                 <th mat-header-cell *matHeaderCellDef class="mini-add"> 
                     <button mat-mini-fab color="primary" 
                     (click)="openCreateInventoryItemAnnexe5FormDialog()" 
-                    
                     >
                         <mat-icon>add</mat-icon>
                     </button>
@@ -52,12 +48,31 @@
             <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
             <tr mat-row *matRowDef="let inventoryItemAnnexe5; columns: columnsToDisplay"></tr>
 
-            <!-- Row shown when there is no matching data. -->
-            <!-- <tr class="mat-row" *matNoDataRow>
-                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-            </tr> -->
+
 
         </table>
-        <!-- <mat-paginator [pageSizeOptions]="[25, 100]" aria-label="Select page"></mat-paginator> -->
+        
     </mat-card-content>
 </mat-card>
+-->
+<div class="annexe5s">
+    <mat-chip-row aria-label="Annexe5 selection" *ngFor="let inventoryItemAnnexe5 of inventoryItemAnnexe5sForChip">
+        <mat-chip >
+            {{inventoryItemAnnexe5.annexe5?.code}} 
+            <!-- <button matChipRemove mat-icon-button color="primary" style="color: rgb(52, 14, 220);"
+                (click)="openUpdateInventoryItemAnnexe5FormDialog(inventoryItemAnnexe5.id , inventoryItemAnnexe5)">
+                <mat-icon>edit</mat-icon>
+            </button> -->
+    
+            <button matChipRemove mat-icon-button color="warn" style="color: rgb(255, 0, 0);"
+                (click)="deleteInventoryItemAnnexe5(inventoryItemAnnexe5.id)">
+                <mat-icon>cancel</mat-icon>
+            </button>
+    
+        </mat-chip>
+    </mat-chip-row>
+</div>
+
+<button mat-mini-fab color="primary" class="add-new-iia5" (click)="openCreateInventoryItemAnnexe5FormDialog()">
+    <mat-icon>add</mat-icon>
+</button>

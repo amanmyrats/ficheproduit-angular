@@ -1,0 +1,21 @@
+mat-card {
+    display: flex;
+
+    &-header {
+        font-weight: 700;
+        margin-bottom: 15px;
+    }
+
+    &-content {
+        display: flex;
+
+        mat-form-field {
+            flex: 1 0 100%;
+        }
+    }
+
+    &-actions {
+        display: flex;
+        justify-content: space-around;
+    }
+}

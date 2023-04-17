@@ -1,6 +1,8 @@
 <div class="material-wrapper">
     <mat-card *ngFor="let materialcard of materialcards">
-        <img mat-card-image src="assets/img/achat.jpg" alt="">
+        <div class="image">
+            <img src="http://localhost:8080/materialcards/{{materialcard.image}}" alt="">
+        </div>
         <mat-card-header>
             <mat-card-title>
                 {{ materialcard.nameEn }}

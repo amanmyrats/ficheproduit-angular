@@ -22,8 +22,8 @@
                             </div>
                         </div>
                         <div class="materialcard-header-title-names-ru horizontal-block">
-                            <div class="label label-left">
-                                Nom du produit:
+                            <div class="label label-left label-wrap">
+                                Наименование изделия:
                             </div>
                             <div class="content">
                                 {{ materialcard ? materialcard.nameRu : "" }}
@@ -49,7 +49,7 @@
                             Стройка:
                         </div>
                         <div class="content">
-                            {{ materialcard ? materialcard.project?.nameFr : "" }}
+                            {{ materialcard ? materialcard.project?.nameRu : "" }}
                         </div>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                             Fournisseur:
                         </div>
                         <div class="content border-secondary-bottom">
-                            Knauf
+                            {{ materialcard ? materialcard.supplierEn: ''}}
                         </div>
                     </div>
                     <div class="horizontal-block">
@@ -71,7 +71,8 @@
                             Поставщик:
                         </div>
                         <div class="content border-secondary-bottom">
-                            Knauf
+                            {{ materialcard ? materialcard.supplierRu: ''}}
+
                         </div>
                     </div>
                 </div>
@@ -81,7 +82,7 @@
                             Origine:
                         </div>
                         <div class="content border-secondary-bottom">
-                            France
+                            {{ materialcard ? materialcard.origin?.nameEn : ''}}
                         </div>
                     </div>
                     <div class="horizontal-block">
@@ -89,7 +90,7 @@
                             Происх.:
                         </div>
                         <div class="content border-secondary-bottom">
-                            France
+                            {{ materialcard ? materialcard.origin?.nameRu : ''}}
                         </div>
                     </div>
                 </div>
@@ -99,7 +100,7 @@
                             Lieu de fabr. :
                         </div>
                         <div class="content border-secondary-bottom">
-                            France
+                            {{ materialcard ? materialcard.manufacturedIn?.nameEn : ''}}
                         </div>
                     </div>
                     <div class="horizontal-block">
@@ -107,7 +108,7 @@
                             Место произ. :
                         </div>
                         <div class="content border-secondary-bottom">
-                            France
+                            {{ materialcard ? materialcard.manufacturedIn?.nameRu : ''}}
                         </div>
                     </div>
                 </div>
@@ -121,7 +122,7 @@
                             Localisation:
                         </div>
                         <div class="content">
-                            LOCAUX TECHNIQUES ET SANITAIRES
+                            {{ materialcard ? materialcard.locationFr : ''}}
                         </div>
                     </div>
                     <div class="horizontal-block">
@@ -129,7 +130,7 @@
                             Размещение:
                         </div>
                         <div class="content">
-                            LOCAUX TECHNIQUES ET SANITAIRES
+                            {{ materialcard ? materialcard.locationRu : ''}}
                         </div>
                     </div>
                 </div>
@@ -163,13 +164,13 @@
                             Procès verbaux:
                         </div>
                         <div class="content border-secondary-bottom">
-
+                            {{ materialcard ? materialcard.protocolFr : ''}}
                         </div>
                         <div class="label label-left">
                             Протоколы:
                         </div>
                         <div class="content">
-
+                            {{ materialcard ? materialcard.protocolRu : ''}}
                         </div>
                     </div>
                     <div class="vertical-block border-primary-bottom">
@@ -177,13 +178,13 @@
                             Observations et avis de l'organisme de contrôle:
                         </div>
                         <div class="content border-secondary-bottom">
-
+                            {{ materialcard ? materialcard.observationFr : ''}}
                         </div>
                         <div class="label label-left">
                             Замечания И Заключение Тех. Надзора:
                         </div>
                         <div class="content">
-
+                            {{ materialcard ? materialcard.observationRu : ''}}
                         </div>
                     </div>
                     <div class="vertical-block border-primary-bottom emetteur-block">
@@ -193,7 +194,7 @@
                                 Составитель:
                             </div>
                             <div class="content content-left">
-                                Someone Someonow
+                                {{ materialcard ? materialcard.signContractor1 : ''}}
                             </div>
                         </div>
                         <div class="horizontal-block">
@@ -207,29 +208,12 @@
                     </div>
                 </div>
                 <div class="vertical-block protocol-image border-primary-left">
-                    <img src="assets/img/achat.jpg" alt="Material Card Image">
+                    <img src="http://localhost:8080/materialcards/{{materialcard.image}}" alt="Material Card Image">
                 </div>
             </div>
 
             <!-- Signatures -->
             <div class="horizontal-block-main signature">
-                <!-- <div class="vertical-block vertical-block-sign">
-                    <div class="label-center signature-company signature-row">
-                        -
-                    </div>
-                    <div class="label-center signature-position signature-row">
-                        -
-                    </div>
-                    <div class="label-left signature-left-labels signature-row">
-                        Le/Дата:
-                    </div>
-                    <div class="label-left signature-left-labels signature-row">
-                        Nom/Имя:
-                    </div>
-                    <div class="label-left signature-left-labels signature-row">
-                        Visas/Под.:
-                    </div>
-                </div> -->
                 <div class="vertical-block vertical-block-sign">
                     <div class="label-center label-one-line signature-company signature-row">
                         Entrepreneur/Подрядчик
@@ -241,7 +225,7 @@
                         ____ / ____ / 202 ___
                     </div>
                     <div class="label-center signature-row">
-                        Hadrien Hue
+                        {{ materialcard ? materialcard.signContractor2 : ''}}
                     </div>
                     <div class="label-center signature-row">
                         ______________
@@ -258,7 +242,7 @@
                         ____ / ____ / 202 ___
                     </div>
                     <div class="label-center signature-row">
-                        Arslan Arslanow
+                        {{ materialcard ? materialcard.signTehnadzor : ''}}
                     </div>
                     <div class="label-center signature-row">
                         ______________
@@ -275,7 +259,7 @@
                         ____ / ____ / 202 ___
                     </div>
                     <div class="label-center signature-row">
-                        Begli Begliyew
+                        {{ materialcard ? materialcard.signClient : ''}}
                     </div>
                     <div class="label-center signature-row">
                         ______________
@@ -290,7 +274,7 @@
                         Affaire/Проект
                     </div>
                     <div class="content content-bold">
-                        CCI
+                        {{ materialcard ? materialcard.project?.code : '' }}
                     </div>
                 </div>
                 <div class="vertical-block border-primary-right">
@@ -298,7 +282,7 @@
                         Phase Зтап
                     </div>
                     <div class="content content-bold">
-                        CCI
+                        {{ materialcard ? materialcard.phase?.code : '' }}
                     </div>
                 </div>
                 <div class="vertical-block border-primary-right">
@@ -306,7 +290,7 @@
                         Lot Pаздел
                     </div>
                     <div class="content content-bold">
-                        CCI
+                        {{ materialcard ? materialcard.lot?.number : '' }}
                     </div>
                 </div>
                 <div class="vertical-block border-primary-right">
@@ -314,7 +298,7 @@
                         Type/Тип
                     </div>
                     <div class="content content-bold">
-                        CCI
+                        {{ materialcard ? materialcard.fptype?.name : '' }}
                     </div>
                 </div>
                 <div class="vertical-block border-primary-right">
@@ -322,7 +306,7 @@
                         Zone/Зона
                     </div>
                     <div class="content content-bold">
-                        CCI
+                        {{ materialcard ? materialcard.zone : '' }}
                     </div>
                 </div>
                 <div class="vertical-block border-primary-right">
@@ -330,15 +314,15 @@
                         Niveau/Зтаж
                     </div>
                     <div class="content content-bold">
-                        CCI
+                        {{ materialcard ? materialcard.level : '' }}
                     </div>
                 </div>
                 <div class="vertical-block border-primary-right">
-                    <div class="label label-center label-wrap border-secondary-bottom">
+                    <div class="label label-center border-secondary-bottom">
                         Numéro/Номеp
                     </div>
                     <div class="content content-bold">
-                        00010
+                        {{ materialcard ? materialcard.number : '' }}
                     </div>
                 </div>
                 <div class="vertical-block">
@@ -346,14 +330,58 @@
                         Indice/Индекс
                     </div>
                     <div class="content content-bold">
-                        A
+                        {{ materialcard ? materialcard.index : '' }}
                     </div>
                 </div>
             </div>
 
+            <!-- Extra info -->
+            <!-- Hide in print mode -->
+            <ng-container *ngIf="materialcard">
+        
+                <div class="horizontal-block-main extra-info">
+        
+                    <div class="horizontal-block border-primary-right">
+                        <div class="label label-left">Department:</div>
+                        <div class="content">
+                            {{materialcard.department?.code}}
+                        </div>
+                    </div>
+        
+                    <div class="horizontal-block border-primary-right">
+                        <div class="label label-left">Trade:</div>
+                        <div class="content">
+                            {{materialcard.trade?.nameEn}}
+                        </div>
+                    </div>
+        
+                    <div class="horizontal-block border-primary-right">
+                        <div class="label label-left">Quantity:</div>
+                        <div class="content">
+                            {{materialcard.quantity}}
+                        </div>
+                    </div>
+        
+                    <div class="horizontal-block border-primary-right">
+                        <div class="label label-left">Unit:</div>
+                        <div class="content">
+                            {{materialcard.unit?.code}}
+                        </div>
+                    </div>
+        
+                    <div class="horizontal-block">
+                        <div class="label label-left">Unit Price:</div>
+                        <div class="content">
+                            {{materialcard.unitPrice}}
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
         </mat-card>
     </div>
     <div class="materialcard-details">
+
+
         <ng-container *ngIf="materialcard">
     
             <app-materialcardmaterial-table class="materialcard-details-materials" 

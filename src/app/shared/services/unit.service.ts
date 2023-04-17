@@ -13,7 +13,7 @@ export class UnitService {
     private httpClient: HttpClient,
   ) { }
 
-  getUnits(): Observable<Unit> {
-    return this.httpClient.get<Unit>(`${env.apiUrl}/bytk/units`);
+  getUnits(): Observable<Unit[]> {
+    return this.httpClient.get<Unit[]>(`${env.apiUrl}/bytk/units`);
   }
 }

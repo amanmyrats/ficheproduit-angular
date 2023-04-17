@@ -1,0 +1,26 @@
+<div class="material-wrapper">
+    <mat-card *ngFor="let inventory of inventories">
+        <img mat-card-image src="assets/img/room_plan.jpg" alt="">
+        <mat-card-header>
+            <mat-card-title>
+                {{ inventory.code }}
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            {{ inventory.nameEn }}
+            {{ inventory.id }}
+        </mat-card-content>
+        <mat-card-actions>
+              <!-- <button mat-mini-fab color="warn" (click)="deleteMaterial(inventory.id)" >
+                  <mat-icon>delete</mat-icon>
+              </button> -->
+              <button mat-mini-fab routerLink="edit/{{inventory.id}}">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-fab extended routerLink="{{inventory.id}}" >
+                <mat-icon>info</mat-icon>
+                See Details
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>

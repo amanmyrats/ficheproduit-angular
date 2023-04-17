@@ -8,8 +8,8 @@
 
             <mat-form-field appearance="outline" class="name" [formGroup]="annexe5Form">
                 <mat-label>Annexe-5</mat-label>
-                <mat-select formControlName="id">
-                    <mat-option [value]="annexe5.id" *ngFor="let annexe5 of annexe5s">{{annexe5.code}} -
+                <mat-select formControlName="id" (click)="shuffleAnnexe5s()">
+                    <mat-option [value]="annexe5.id" *ngFor="let annexe5 of projectAnnexe5s">{{annexe5.code}} -
                         {{annexe5.nameEn}}</mat-option>
                 </mat-select>
             </mat-form-field>

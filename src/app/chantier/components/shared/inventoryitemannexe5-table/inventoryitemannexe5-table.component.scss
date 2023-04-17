@@ -1,0 +1,15 @@
+    .add-new-iia5 {
+        margin-left: 10px;
+    }
+
+    .annexe5s {
+        display: flex;
+        flex-wrap: wrap;
+        flex: 0 1 auto;
+        // max-width: 350px;
+        // background-color: antiquewhite;
+
+        mat-chip-row {
+            margin: 2px 2px;
+        }
+    }

@@ -1,2 +1,18 @@
--create MaterialcardRoom table
--create/edit/delete for MaterialcardMaterial and MaterialcardRoom items.
+-order list/detail/edit
+-facture list/detail/edit
+-qs page for pra annexe5, sample yg table
+
+<!-- UI -->
+-search and filter functionality
+-edit/detail/delete shortcut menu that is sticky
+
+<!-- UX -->
+-when adding annexe5 to materialcard material, set default quantity and unit in form
+-convert menu buttons into anchor tags
+
+<!-- Optimization -->
+-when adding/updating/deleting use push/pop methods of array, instead of fetching list info from database
+-check caching for annexe5list, projectlist, roomlist etc
+
+<!-- To get your brain rest -->
+-change home background image with bytk related image 

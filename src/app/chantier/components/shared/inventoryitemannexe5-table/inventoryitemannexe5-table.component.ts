@@ -1,7 +1,7 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+// import { MatPaginator } from '@angular/material/paginator';
+// import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { Inventoryitem } from 'src/app/chantier/models/inventoryitem.model';
@@ -20,9 +20,11 @@ export class Inventoryitemannexe5TableComponent {
   // @ViewChild(MatSort) sort!: MatSort;
 
   inventoryItemAnnexe5s!: MatTableDataSource<Inventoryitemannexe5>;
-  columnsToDisplay = ['id', 'annexe5', 'quantity', 'unit', 'actions'];
+  inventoryItemAnnexe5sForChip!: Inventoryitemannexe5[];
+  columnsToDisplay = ['annexe5', 'actions'];
   inventoryItemId: string;
   @Input() projectIdFromParent: any = '';
+  @Input() materialCardIdFromParent: any = '';
   @Input() inventoryItemFromParent: Inventoryitem;
 
   constructor(
@@ -41,12 +43,13 @@ export class Inventoryitemannexe5TableComponent {
     this.inventoryItemService.getInventoryItemAnnexe5sByInventoryItem(id)
       .subscribe((data: Inventoryitemannexe5[]) => {
         this.inventoryItemAnnexe5s = new MatTableDataSource(data);
+        this.inventoryItemAnnexe5sForChip = data;
         // this.inventoryItemAnnexe5s.sort = this.sort;
         // this.inventoryItemAnnexe5s.paginator = this.paginator;
       });
   }
 
-  deleteInventoryItemAnnexe5(inventoryItemAnnexe5Id: string) {
+  deleteInventoryItemAnnexe5(inventoryItemAnnexe5Id: any) {
     this.inventoryItemAnnexe5Service.deleteInventoryItemAnnexe5(inventoryItemAnnexe5Id)
       .subscribe({
         next: (data: string) => {
@@ -68,6 +71,7 @@ export class Inventoryitemannexe5TableComponent {
         inventoryItemAnnexe5DataFromTable: null,
         inventoryItem: this.inventoryItemFromParent,
         projectId: this.projectIdFromParent,
+        materialCardId: this.materialCardIdFromParent,
       }
     });
     dialogRef.afterClosed().subscribe({
@@ -81,7 +85,7 @@ export class Inventoryitemannexe5TableComponent {
   }
 
   openUpdateInventoryItemAnnexe5FormDialog(
-    inventoryItemId: string,
+    inventoryItemId: any,
     inventoryItemAnnexe5DataFromTable: Inventoryitemannexe5,
   ) {
     inventoryItemAnnexe5DataFromTable.inventoryItem = this.inventoryItemFromParent;
@@ -91,6 +95,7 @@ export class Inventoryitemannexe5TableComponent {
         inventoryItemId: inventoryItemId,
         inventoryItem: this.inventoryItemFromParent,
         projectId: this.projectIdFromParent,
+        materialCardId: this.materialCardIdFromParent,
       }
     });
     dialogRef.afterClosed().subscribe({
@@ -102,6 +107,7 @@ export class Inventoryitemannexe5TableComponent {
       }
     });
   }
+
 
   // applyFilter(event: Event) {
   //   const filterValue = (event.target as HTMLInputElement).value;

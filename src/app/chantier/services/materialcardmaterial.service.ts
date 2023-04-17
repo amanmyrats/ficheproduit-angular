@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Materialcardmaterial } from '../models/materialcardmaterial.model';
 import { environment as env } from 'src/environments/environment';
 import { Materialcardmaterialannexe5 } from '../models/materialcardmaterialannexe5.model';
+import { Annexe5 } from 'src/app/qs/models/annexe5.model';
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +33,10 @@ export class MaterialcardmaterialService {
   // MaterialCardMaterial Annexe5s
   getMaterialCardMaterialAnnexe5sByMaterialCardMaterial(materialCardMaterialId: string): Observable<Materialcardmaterialannexe5[]> {
     return this.httpClient.get<Materialcardmaterialannexe5[]>(`${env.apiUrl}/chantier/materialcardmaterials/${materialCardMaterialId}/materialcardmaterialannexe5s`);
+  }
+
+  // Annexe5s
+  getAnnexe5sByMaterialCardMaterial(materialCardMaterialId: string): Observable<Annexe5[]> {
+    return this.httpClient.get<Annexe5[]>(`${env.apiUrl}/chantier/materialcardmaterials/${materialCardMaterialId}/annexe5s`);
   }
 }

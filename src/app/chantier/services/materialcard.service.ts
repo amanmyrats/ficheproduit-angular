@@ -5,6 +5,7 @@ import { environment as env } from 'src/environments/environment';
 import { Inventoryitem } from '../models/inventoryitem.model';
 import { Materialcard } from '../models/materialcard.model';
 import { Materialcardmaterial } from '../models/materialcardmaterial.model';
+import { Annexe5 } from 'src/app/qs/models/annexe5.model';
 
 @Injectable({
   providedIn: 'root'
@@ -68,6 +69,11 @@ export class MaterialcardService {
 
   updateInventoryItemByMaterialcard(materialcardId: string, projectId: string, roomId: string, id: string, inventoryItem: Inventoryitem): Observable<Inventoryitem> {
     return this.httpClient.put<Inventoryitem>(`${this.materialcard_api_url}/${materialcardId}/inventoryitems/${id}?room_id=${roomId}&project_id=${projectId}`, inventoryItem);
+  }
+
+  // Annexe5s
+  getAnnexe5sByMaterialCard(materialcardId: string): Observable<Annexe5[]> {
+    return this.httpClient.get<Annexe5[]>(`${this.materialcard_api_url}/${materialcardId}/annexe5s`);
   }
 
 }
