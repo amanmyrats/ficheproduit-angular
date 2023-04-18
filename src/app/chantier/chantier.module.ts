@@ -9,7 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import {MatChipsModule} from '@angular/material/chips';
+import { MatChipsModule } from '@angular/material/chips';
 import { MaterialComponent } from './components/material/material.component';
 import { MaterialListComponent } from './components/material/material-list/material-list.component';
 import { MaterialFormComponent } from './components/material/material-form/material-form.component';
