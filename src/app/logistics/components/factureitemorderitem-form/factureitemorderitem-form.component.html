@@ -1,0 +1,30 @@
+<form [formGroup]="factureItemForm" (ngSubmit)="onSubmit()">
+    <mat-card>
+        <mat-card-header>
+            Select order item of facture item?
+        </mat-card-header>
+
+        <mat-card-content>
+
+            <mat-form-field appearance="outline" class="name" [formGroup]="factureItemOrderItemForm">
+                <mat-label>Order Items</mat-label>
+                <mat-select formControlName="id" required>
+                    <mat-option [value]="orderItem.id"
+                        *ngFor="let orderItem of orderItems">
+                        {{orderItem.order?.number}} - {{orderItem.descEn}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+        </mat-card-content>
+        <mat-card-actions mat-dialog-actions>
+            <button mat-raised-button [mat-dialog-close]="false">
+                Cancel
+            </button>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!factureItemOrderItemForm.valid">
+                Add
+            </button>
+        </mat-card-actions>
+
+    </mat-card>
+</form>

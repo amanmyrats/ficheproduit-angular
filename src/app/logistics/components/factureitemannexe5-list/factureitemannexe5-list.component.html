@@ -1,0 +1,32 @@
+<div class="annexe5s">
+    <mat-chip-row aria-label="Annexe5 selection" *ngFor="let factureItemAnnexe5 of factureItemAnnexe5sForChip">
+        <mat-chip color="accent">
+            <div class="factureitemannexe5">
+
+                <div class="annexe5" color="warn" style="color: rgb(52, 14, 220);">
+                    {{factureItemAnnexe5.annexe5?.code}}
+                </div>
+                <div class="annexe5" color="warn" style="color: rgb(52, 14, 220);">
+                    {{ factureItemAnnexe5.quantity }}
+                </div>
+                <div class="annexe5" color="warn" style="color: rgb(52, 14, 220);">
+                    {{ factureItemAnnexe5.unit?.code }}
+                </div>
+            </div>
+            <button class="button" matChipRemove mat-icon-button color="primary" style="color: rgb(52, 14, 220);"
+                (click)="openUpdateFactureItemAnnexe5FormDialog(factureItemAnnexe5.id , factureItemAnnexe5)">
+                <mat-icon>edit</mat-icon>
+            </button>
+    
+            <button class="button" matChipRemove mat-icon-button color="warn" style="color: rgb(255, 0, 0);"
+                (click)="deleteFactureItemAnnexe5(factureItemAnnexe5.id)">
+                <mat-icon>cancel</mat-icon>
+            </button>
+    
+        </mat-chip>
+    </mat-chip-row>
+</div>
+
+<button mat-mini-fab color="primary" class="add-new-iia5" (click)="openCreateFactureItemAnnexe5FormDialog()">
+    <mat-icon>add</mat-icon>
+</button>

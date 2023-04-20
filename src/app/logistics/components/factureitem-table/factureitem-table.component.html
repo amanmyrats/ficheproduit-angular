@@ -1,0 +1,94 @@
+<table mat-table [dataSource]="factureItems" multiTemplateDataRows class="mat-elevation-z8" matSort>
+
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let factureItem"> {{factureItem.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="order">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Order </th>
+        <td mat-cell *matCellDef="let factureItem">
+            <span *ngIf="factureItem.order?.id">
+                {{factureItem.order?.number }}
+            </span>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="orderitem">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> OrderItem </th>
+        <td mat-cell *matCellDef="let factureItem">
+            <ng-container *ngIf="factureItem.order?.id">
+
+                <ng-container *ngIf="!factureItem.orderitem?.id">
+                    <button mat-icon-button color="primary" (click)="openAddFactureItemOrderItemFormDialog(
+                                                            factureItem.id, 
+                                                            factureItem, 
+                                                            factureItem.order.id
+                                                            )">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </ng-container>
+        
+                <ng-container *ngIf="factureItem.orderitem?.id">
+                    <button mat-icon-button color="warn" (click)="deleteFactureItemOrderItem(
+                                                factureItem.id
+                                                )">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </ng-container>
+                
+                <span *ngIf="factureItem.orderitem?.id">
+                    {{ factureItem.orderitem.descEn }}
+                </span>
+            </ng-container>
+        
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="descEn">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+        <td mat-cell *matCellDef="let factureItem"> {{factureItem.descEn}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> quantity </th>
+        <td mat-cell *matCellDef="let factureItem"> {{factureItem.quantity}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="unit">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Unit </th>
+        <td mat-cell *matCellDef="let factureItem"> {{factureItem.unit.code}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="unitPrice">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Unit Price </th>
+        <td mat-cell *matCellDef="let factureItem"> {{factureItem.unitPrice}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="totalPrice">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Price </th>
+        <td mat-cell *matCellDef="let factureItem"> {{factureItem.totalPrice}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="factureitemannexe5s">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Annexe5s </th>
+        <td mat-cell *matCellDef="let factureItem"> 
+            <app-factureitemannexe5-list
+                [projectIdFromParent]="projectIdFromParent" 
+                [factureIdFromParent]="factureIdFromParent" 
+                [factureItemFromParent]="factureItem" 
+                >
+            </app-factureitemannexe5-list>
+
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let factureItem; columns: columnsToDisplay"></tr>
+
+    <!-- Row shown when there is no matching data. -->
+    <!-- <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+            </tr> -->
+
+</table>

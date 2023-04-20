@@ -1,18 +1,18 @@
 <div class="material-wrapper">
-    <mat-card *ngFor="let order of orders">
+    <mat-card *ngFor="let facture of factures">
         <!-- <div class="image">
-            {{ order.number }}
+            {{ facture.number }}
         </div> -->
         <mat-card-header>
             <mat-card-title>
-                {{ order.number }}
+                {{ facture.number }}
             </mat-card-title>
         </mat-card-header>
         <mat-card-content>
-            {{ order.description }}
+            {{ facture.description }}
         </mat-card-content>
         <mat-card-actions>
-            <button mat-fab extended routerLink="{{order.id}}" >
+            <button mat-fab extended routerLink="{{facture.id}}" >
                 <mat-icon>info</mat-icon>
                 See Details
             </button>

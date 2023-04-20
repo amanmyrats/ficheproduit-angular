@@ -1,0 +1,41 @@
+<mat-card *ngIf="facture">
+    <mat-card-header>
+        <div class="horizontal-block-main">
+            <div class="vertical-block-main">
+                <div class="horizontal-block">
+                    <div class="label label-left">
+                        Number:
+                    </div>
+                    <div class="content content-center">
+                        {{ facture.number }}
+                    </div>
+                </div>
+                <div class="horizontal-block">
+                    <div class="label label-left">
+                        Project:
+                    </div>
+                    <div class="content content-center">
+                        {{ facture.project?.code }}
+                    </div>
+                </div>
+            </div>
+    
+            <div class="vertical-block-main">
+                <div class="label label-center">
+                    DATE:
+                </div>
+                <div class="content content-center">
+                    {{ facture.createdAt }}
+                </div>
+            </div>
+        </div>
+    </mat-card-header>
+    <mat-card-content *ngIf="facture">
+        <app-factureitem-table
+        [projectIdFromParent]="facture.project?.id" 
+        [factureFromParent]="facture" 
+        [factureIdFromParent]="factureId"
+        >
+        </app-factureitem-table>
+    </mat-card-content>
+</mat-card>

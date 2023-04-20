@@ -1,0 +1,30 @@
+<form [formGroup]="orderItemForm" (ngSubmit)="onSubmit()">
+    <mat-card>
+        <mat-card-header>
+            This Order item belongs to which Fiche Produit?
+        </mat-card-header>
+
+        <mat-card-content>
+
+            <mat-form-field appearance="outline" class="name" [formGroup]="materialCardForm">
+                <mat-label>Fiche Produits</mat-label>
+                <mat-select formControlName="id" required>
+                    <mat-option [value]="materialCard.id"
+                        *ngFor="let materialCard of materialCards">
+                        {{materialCard.number}} - {{materialCard.nameEn}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+        </mat-card-content>
+        <mat-card-actions mat-dialog-actions>
+            <button mat-raised-button [mat-dialog-close]="false">
+                Cancel
+            </button>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!materialCardForm.valid">
+                Add
+            </button>
+        </mat-card-actions>
+
+    </mat-card>
+</form>

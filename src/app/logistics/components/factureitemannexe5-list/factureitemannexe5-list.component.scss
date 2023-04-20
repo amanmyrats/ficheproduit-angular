@@ -1,0 +1,46 @@
+.add-new-iia5 {
+    margin-left: 10px;
+}
+
+.annexe5s {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 0 1 auto;
+    // max-width: 350px;
+    // background-color: antiquewhite;
+
+    mat-chip-row {
+        margin: 2px 2px;
+    }
+}
+
+mat-chip {
+    background-color: aliceblue;
+
+    div.factureitemannexe5 {
+        display: flex;
+        margin-right: 5px;
+    }
+    div.annexe5 {
+        padding: 3px;
+        font-weight: 600;
+        font-size: large;
+        margin: 1px 5px;
+        border-radius: 10px;
+        border: .1px solid rgb(206, 201, 201);
+        background-color: rgb(214, 193, 193);
+    }
+
+    button.quantity {
+        margin: 1px 0px;
+    }
+
+    button.unit {
+        margin: 1px 0px;
+    }
+
+    button.button {
+        margin: 1px 0px;
+    }
+
+}

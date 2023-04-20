@@ -1,0 +1,41 @@
+<form [formGroup]="factureItemAnnexe5Form" (ngSubmit)="onSubmit()">
+    <mat-card>
+        <mat-card-header>
+            Which Annexe5 this facture item belongs to?
+        </mat-card-header>
+
+        <mat-card-content>
+
+            <mat-form-field appearance="outline" class="name" [formGroup]="annexe5Form">
+                <mat-label>Annexe-5</mat-label>
+                <mat-select formControlName="id" required>
+                    <mat-option [value]="annexe5.id" *ngFor="let annexe5 of allPossibleAnnexe5sOfFactureItem">{{annexe5.code}} -
+                        {{annexe5.nameEn}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Quantity</mat-label>
+                <input type="number" matInput formControlName="quantity">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" [formGroup]="unitForm">
+                <mat-label>Unit</mat-label>
+                <mat-select formControlName="id">
+                    <mat-option [value]="unit.id" *ngFor="let unit of units">{{ unit.code }}</mat-option>
+                </mat-select>
+
+            </mat-form-field>
+
+        </mat-card-content>
+        <mat-card-actions mat-dialog-actions>
+            <button mat-raised-button [mat-dialog-close]="false">
+                Cancel
+            </button>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!annexe5Form.valid">
+                {{ data.factureItemAnnexe5DataFromTable ? 'Update' : 'Add'}}
+            </button>
+        </mat-card-actions>
+
+    </mat-card>
+</form>
