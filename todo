@@ -1,6 +1,7 @@
 -order list/detail/edit
 -facture list/detail/edit
 -qs page for pra annexe5, sample yg table
+-factureitem annexe5 select option must be edited in factureitemService
 
 <!-- UI -->
 -search and filter functionality

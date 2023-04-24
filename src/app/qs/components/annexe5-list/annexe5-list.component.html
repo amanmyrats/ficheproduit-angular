@@ -1,0 +1,25 @@
+<div class="material-wrapper">
+    <mat-card *ngFor="let project of projectsHasAnnexe5">
+        <!-- <div class="image">
+            {{ project.number }}
+        </div> -->
+        <mat-card-header>
+            <mat-card-title>
+                {{ project.code }}
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            {{ project.nameEn }}
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-fab extended routerLink="/qs/projects/{{project.id}}/annexe5items" >
+                <mat-icon>info</mat-icon>
+                Annexe5
+            </button>
+            <button mat-fab extended routerLink="/qs/projects/{{project.id}}/ygtableitems" >
+                <mat-icon>info</mat-icon>
+                YG Table
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>

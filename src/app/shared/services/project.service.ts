@@ -31,4 +31,8 @@ export class ProjectService {
   getProjectMaterialCards(id: string): Observable<Materialcard[]> {
     return this.httpClient.get<Materialcard[]>(`${env.apiUrl}/bytk/projects/${id}/materialcards`);
   }
+
+  getProjectsHasAnnexe5(): Observable<Project[]> {
+    return this.httpClient.get<Project[]>(`${env.apiUrl}/bytk/projects/hasannexe5`);
+  }
 }
