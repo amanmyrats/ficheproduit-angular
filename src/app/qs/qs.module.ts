@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { QsRoutingModule } from './qs-routing.module';
@@ -17,6 +17,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 @NgModule({
@@ -41,6 +43,9 @@ import { MatChipsModule } from '@angular/material/chips';
     MatInputModule,
     MatDialogModule,
     MatChipsModule, 
-  ]
+    MatSortModule, 
+    MatPaginatorModule, 
+  ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class QsModule { }

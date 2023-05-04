@@ -1,0 +1,87 @@
+table {
+    width: 100%;
+  }
+  
+  tr.example-detail-row {
+    height: 0;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):hover {
+    background: whitesmoke;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):active {
+    background: #efefef;
+  }
+  
+  .example-element-row td {
+    border-bottom-width: 0;
+  }
+  
+  .example-element-detail {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    // align-items: flex-end;
+    width: 90%;
+    margin-left: auto;
+  }
+  
+  .example-element-diagram {
+    min-width: 80px;
+    border: 2px solid black;
+    padding: 8px;
+    font-weight: lighter;
+    margin: 8px 0;
+    height: 104px;
+  }
+  
+  .example-element-symbol {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: normal;
+  }
+  
+  .example-element-description {
+    padding: 16px;
+  }
+  
+  .example-element-description-attribution {
+    opacity: 0.5;
+  }
+
+ 
+  
+  .ygtable {
+    display: flex;
+    background-color: rgb(238, 231, 230);
+    border-radius: 5px;
+    padding: 3px 3px;
+    margin: 1px 0;
+    
+    .number {
+      flex: 0 1 auto;
+      min-width: 10%;
+      background-color: antiquewhite;
+    border-radius: 5px;
+    padding: 3px 1px;
+  }
+    
+    .descEn {
+      flex: 1 1 auto;
+      min-width: 25%;
+      text-align: center;
+    border-radius: 5px;
+    padding: 3px 1px;
+  }
+
+    .quantity, .unit, .unitPrice, .totalPrice {
+      min-width: 5%;
+      background-color: aqua;
+      flex: 0 1 auto;
+    border-radius: 5px;
+    padding: 3px 1px;
+  }
+
+    
+  }

@@ -6,7 +6,7 @@
     flex-wrap: wrap;
 }
 mat-card {
-    min-width: 100px;
+    min-width: 200px;
     width: 10vw;
     margin: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -29,7 +29,8 @@ mat-card {
 
     &:hover {
         box-shadow: rgba(0, 0, 0, 0.502) 0px 54px 55px, rgba(43, 26, 174, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-        width: 15vw;
+        min-width: 220px;
+        width: 12vw;
     }
 
     :active {
@@ -62,7 +63,7 @@ mat-card {
         justify-content: center;
         
         button {
-            margin: 1px 2px;
+            margin: 3px 2px;
         }
     }
 }
